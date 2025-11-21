@@ -15,6 +15,41 @@
 - Professional color scheme (blues, grays, whites, subtle accents)
 - Avoid neon/flashy colors that might distract from educational content
 
+## Frame Layout and Spacing Requirements
+- **Frame Size**: 1920x1080 (16:9 aspect ratio)
+- **Safe Margins**: 80-100px padding from all edges
+- **ALL elements must stay within frame bounds - no overflow**
+- **Test all animations to ensure they don't overflow the frame**
+- **Icons and images must be properly sized and positioned**
+
+## Vertical Space Utilization
+- **Use full vertical space (1080px height)**
+- **Headers/Titles must be clearly visible at top**
+- **Minimum 80px top padding for headers**
+- **Distribute content evenly across vertical space**
+- **Leave 80-100px bottom margin**
+
+## Component Spacing Rules
+- **Between components**: Minimum 40-60px vertical gap
+- **Between sections**: 80-120px vertical gap
+- **Layer spacing**: 180-220px between stacked elements
+- **Card spacing**: 40-50px horizontal gap between cards
+- **Text line height**: 1.4x minimum for readability
+
+## Element Sizing
+- **Headers/Titles**: 65-90px font size, always visible at top
+- **Body text**: 24-38px font size
+- **Icons**: 50-70px (no larger than 80px)
+- **Cards/Boxes**: Max width 500px for single cards
+- **Layer components**: Max width 900px
+
+## Overlap Prevention
+- **NO elements should overlap** (text, images, boxes, animations)
+- **Each component needs dedicated vertical space**
+- **Arrows/connectors must be positioned between elements, not overlapping**
+- **Use absolute positioning with clear y-coordinates**
+- **Test at all animation keyframes for overlap**
+
 ## Content Guidelines
 - No script text overlay on video (voice over only)
 - Educational content focused
