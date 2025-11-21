@@ -115,6 +115,74 @@ const TechLogo = ({ name, color, bgGradient }: { name: string; color?: string; b
   </div>
 );
 
+const CompanySpotlight = ({
+  logo,
+  stat,
+  caption,
+  accent,
+  delay = 0,
+}: {
+  logo: React.ReactNode;
+  stat: string;
+  caption: string;
+  accent: string;
+  delay?: number;
+}) => {
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+
+  const appear = spring({
+    frame: frame - delay,
+    fps,
+    config: { damping: 18 },
+  });
+
+  const translate = interpolate(appear, [0, 1], [30, 0]);
+
+  return (
+    <div
+      style={{
+        minWidth: 260,
+        maxWidth: 320,
+        padding: '26px 32px',
+        borderRadius: 30,
+        background: `linear-gradient(150deg, ${accent}25, rgba(4,10,24,0.95))`,
+        border: `1px solid ${accent}70`,
+        boxShadow: `0 30px 70px ${accent}33`,
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 16,
+        opacity: appear,
+        transform: `translateY(${translate}px) scale(${0.9 + appear * 0.1})`,
+      }}
+    >
+      <div style={{ display: 'flex', justifyContent: 'center' }}>{logo}</div>
+      <div
+        style={{
+          ...fontPresets.heading,
+          fontSize: 68,
+          color: accent,
+          textAlign: 'center',
+          lineHeight: 1,
+        }}
+      >
+        {stat}
+      </div>
+      <div
+        style={{
+          ...fontPresets.body,
+          fontSize: 26,
+          color: colors.neutral.white,
+          textAlign: 'center',
+          opacity: 0.9,
+        }}
+      >
+        {caption}
+      </div>
+    </div>
+  );
+};
+
 // Minimal text overlay
 const MinimalText = ({ text, delay = 0, size = 50 }: { text: string; delay?: number; size?: number }) => {
   const frame = useCurrentFrame();
@@ -334,7 +402,7 @@ export const Scene1_HookIntro: React.FC = () => {
         </AbsoluteFill>
       </Sequence>
 
-      {/* PART 4: Tech logos showcase (510-660 frames / 17-22 seconds) */}
+      {/* PART 4: Tech proof points (510-660 frames / 17-22 seconds) */}
       <Sequence from={510} durationInFrames={150}>
         <AbsoluteFill
           style={{
@@ -342,19 +410,20 @@ export const Scene1_HookIntro: React.FC = () => {
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
-            gap: 60,
+            gap: 50,
+            padding: '0 120px',
           }}
         >
-          <MinimalText text="The secret?" delay={0} size={70} />
+          <MinimalText text="The secret?" delay={0} size={68} />
 
           <div
             style={{
               ...fontPresets.heading,
-              fontSize: 160,
+              fontSize: 150,
               background: createGradient(colors.accent.green, colors.accent.gold),
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
-              filter: 'drop-shadow(0 0 50px rgba(0, 255, 127, 0.6))',
+              filter: 'drop-shadow(0 0 60px rgba(0, 255, 127, 0.6))',
               opacity: spring({
                 frame: frame - 510,
                 fps,
@@ -367,27 +436,91 @@ export const Scene1_HookIntro: React.FC = () => {
             System Design
           </div>
 
-          <div style={{
-            display: 'flex',
-            gap: 60,
-            opacity: spring({
-              frame: frame - 540,
-              fps,
-              from: 0,
-              to: 1,
-              config: { damping: 100 },
-            }),
-          }}>
-            <TechLogo name="Uber" color="#000000" />
-            <div style={{
-              ...fontPresets.heading,
-              fontSize: 80,
-              color: colors.primary.blue,
-              filter: 'drop-shadow(0 0 20px rgba(29, 161, 242, 0.5))',
-            }}>
-              𝕏
-            </div>
+          <div
+            style={{
+              ...fontPresets.body,
+              fontSize: 42,
+              color: colors.neutral.light,
+              textAlign: 'center',
+              opacity: spring({
+                frame: frame - 520,
+                fps,
+                from: 0,
+                to: 1,
+                config: { damping: 80 },
+              }) * 0.9,
+            }}
+          >
+            Trusted by every product you open daily
           </div>
+
+          <div
+            style={{
+              display: 'flex',
+              gap: 35,
+              flexWrap: 'wrap',
+              justifyContent: 'center',
+              width: '100%',
+              maxWidth: 1400,
+            }}
+          >
+            <CompanySpotlight
+              delay={520}
+              accent={colors.primary.blue}
+              stat="5B+"
+              caption="rides coordinated yearly"
+              logo={
+                <div
+                  style={{
+                    ...fontPresets.heading,
+                    fontSize: 64,
+                    letterSpacing: 6,
+                    color: colors.neutral.white,
+                  }}
+                >
+                  Uber
+                </div>
+              }
+            />
+            <CompanySpotlight
+              delay={535}
+              accent="#1DA1F2"
+              stat="500M"
+              caption="posts shared every day"
+              logo={
+                <div
+                  style={{
+                    ...fontPresets.heading,
+                    fontSize: 72,
+                    color: '#7cc8ff',
+                    letterSpacing: 8,
+                  }}
+                >
+                  𝕏
+                </div>
+              }
+            />
+            <CompanySpotlight
+              delay={550}
+              accent="#1DB954"
+              stat="120M"
+              caption="tracks playing simultaneously"
+              logo={
+                <div
+                  style={{
+                    ...fontPresets.heading,
+                    fontSize: 60,
+                    color: '#1DB954',
+                    letterSpacing: 4,
+                  }}
+                >
+                  Spotify
+                </div>
+              }
+            />
+          </div>
+
+          <MinimalText text="System design keeps them all online." delay={560} size={56} />
         </AbsoluteFill>
       </Sequence>
 

@@ -11,12 +11,14 @@ const CAPProperty = ({
   description,
   color,
   delay = 0,
+  Visual,
 }: {
   letter: string;
   name: string;
   description: string;
   color: string;
   delay?: number;
+  Visual?: React.ComponentType;
 }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
@@ -35,14 +37,15 @@ const CAPProperty = ({
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        gap: 20,
-        padding: '35px 45px',
+        gap: 18,
+        padding: '28px 32px',
         background: `${colors.neutral.medium}DD`,
         borderRadius: 15,
         border: `4px solid ${color}`,
         transform: `scale(${scale})`,
-        minWidth: 420,
-        maxWidth: 420,
+        minWidth: 340,
+        maxWidth: 340,
+        flex: '1 1 0',
       }}
     >
       <div
@@ -62,12 +65,182 @@ const CAPProperty = ({
       >
         {letter}
       </div>
+      {Visual && (
+        <div
+          style={{
+            width: '100%',
+            height: 100,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          <Visual />
+        </div>
+      )}
       <div style={{ ...fontPresets.heading, fontSize: 42, color }}>
         {name}
       </div>
       <div style={{ ...fontPresets.body, fontSize: 26, color: colors.neutral.white, textAlign: 'center', opacity: 0.9 }}>
         {description}
       </div>
+    </div>
+  );
+};
+
+const ConsistencyVisualization = () => {
+  const frame = useCurrentFrame();
+  const pulse = 0.6 + 0.4 * Math.abs(Math.sin(frame / 20));
+  const activeIndex = Math.floor((frame / 30) % 4);
+
+  return (
+    <div style={{ display: 'flex', gap: 14 }}>
+      {[0, 1, 2].map((col) => (
+        <div
+          key={col}
+          style={{
+            width: 80,
+            height: 90,
+            borderRadius: 18,
+            border: `2px solid ${colors.primary.blue}`,
+            background: `${colors.primary.blue}15`,
+            padding: 8,
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 6,
+            boxShadow: col === activeIndex ? `0 0 25px ${colors.primary.blue}60` : undefined,
+          }}
+        >
+          {Array.from({ length: 4 }).map((_, row) => (
+            <div
+              key={row}
+              style={{
+                height: 10,
+                borderRadius: 6,
+                background: col === activeIndex ? `${colors.primary.blue}` : `${colors.primary.blue}40`,
+                opacity: row === (frame / 10 + col) % 4 ? pulse : 0.4,
+                transition: 'opacity 0.2s',
+              }}
+            />
+          ))}
+        </div>
+      ))}
+    </div>
+  );
+};
+
+const AvailabilityVisualization = () => {
+  const frame = useCurrentFrame();
+  const wave = (offset: number) => 0.6 + 0.4 * Math.sin((frame + offset) / 15);
+
+  return (
+    <div style={{ display: 'flex', alignItems: 'center', gap: 18 }}>
+      {[0, 1].map((idx) => (
+        <div
+          key={idx}
+          style={{
+            width: 70,
+            height: 90,
+            borderRadius: 16,
+            border: `2px solid ${colors.accent.green}`,
+            background: `${colors.accent.green}10`,
+            position: 'relative',
+            overflow: 'hidden',
+          }}
+        >
+          <div
+            style={{
+              position: 'absolute',
+              inset: 10,
+              borderRadius: 10,
+              border: `1px dashed ${colors.accent.green}60`,
+            }}
+          />
+          <div
+            style={{
+              position: 'absolute',
+              bottom: 12,
+              left: '50%',
+              transform: `translateX(-50%) scale(${wave(idx * 20)})`,
+              width: 42,
+              height: 42,
+              borderRadius: '50%',
+              background: `${colors.accent.green}30`,
+              border: `2px solid ${colors.accent.green}`,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            <div
+              style={{
+                width: 18,
+                height: 18,
+                borderBottom: `3px solid ${colors.accent.green}`,
+                borderRight: `3px solid ${colors.accent.green}`,
+                transform: 'rotate(45deg)',
+              }}
+            />
+          </div>
+        </div>
+      ))}
+      <div
+        style={{
+          width: 50,
+          height: 4,
+          background: `${colors.accent.green}`,
+          opacity: 0.3 + 0.7 * Math.abs(Math.sin(frame / 25)),
+          borderRadius: 4,
+        }}
+      />
+    </div>
+  );
+};
+
+const PartitionToleranceVisualization = () => {
+  const frame = useCurrentFrame();
+  const blink = 0.5 + 0.5 * Math.abs(Math.sin(frame / 12));
+
+  return (
+    <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
+      {[colors.primary.purple, colors.primary.blue].map((accent, idx) => (
+        <div
+          key={idx}
+          style={{
+            width: 90,
+            height: 60,
+            borderRadius: 16,
+            border: `2px solid ${accent}`,
+            background: `${accent}18`,
+            display: 'grid',
+            gridTemplateColumns: 'repeat(3, 1fr)',
+            gap: 6,
+            padding: 8,
+          }}
+        >
+          {Array.from({ length: 6 }).map((_, i) => (
+            <div
+              key={i}
+              style={{
+                width: 10,
+                height: 10,
+                borderRadius: '50%',
+                background: accent,
+                opacity: 0.5 + (i % 2 === 0 ? 0.4 : 0),
+              }}
+            />
+          ))}
+        </div>
+      ))}
+      <div
+        style={{
+          width: 40,
+          height: 3,
+          background: `linear-gradient(90deg, ${colors.primary.blue}, ${colors.primary.purple})`,
+          opacity: blink,
+          borderRadius: 3,
+        }}
+      />
     </div>
   );
 };
@@ -112,6 +285,189 @@ const ExampleCard = ({
       </div>
       <div style={{ ...fontPresets.body, fontSize: 28, color: colors.neutral.white, opacity: 0.9 }}>
         {example}
+      </div>
+    </div>
+  );
+};
+
+const PartitionVisualizer = () => {
+  const frame = useCurrentFrame();
+  const connectionOpacity = 0.4 + 0.6 * Math.abs(Math.sin(frame / 25));
+
+  const clusters = [
+    { x: 0, label: 'Cluster A', accent: colors.primary.blue },
+    { x: 1, label: 'Cluster B', accent: colors.accent.green },
+  ];
+
+  const renderNodes = (accent: string) =>
+    Array.from({ length: 6 }).map((_, i) => {
+      const spin = 4 * Math.sin((frame + i * 12) / 18);
+      return (
+        <div
+          key={i}
+          style={{
+            width: 16,
+            height: 16,
+            borderRadius: '50%',
+            background: accent,
+            opacity: 0.9,
+            transform: `translate(${Math.sin(i * 40) * 8}px, ${Math.cos(i * 20) * 8}px) rotate(${spin}deg)`,
+          }}
+        />
+      );
+    });
+
+  return (
+    <div
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: 30,
+        padding: '30px 40px',
+        borderRadius: 30,
+        background: `${colors.neutral.medium}80`,
+        border: `1px solid ${colors.neutral.light}30`,
+        boxShadow: '0 25px 60px rgba(0,0,0,0.35)',
+      }}
+    >
+      {clusters.map((cluster, idx) => (
+        <div
+          key={cluster.label}
+          style={{
+            width: 180,
+            height: 120,
+            borderRadius: 24,
+            border: `2px solid ${cluster.accent}`,
+            background: `${cluster.accent}15`,
+            padding: 18,
+            display: 'flex',
+            flexWrap: 'wrap',
+            gap: 10,
+            justifyContent: 'center',
+          }}
+        >
+          {renderNodes(cluster.accent)}
+          <div style={{ width: '100%', textAlign: 'center', ...fontPresets.body, fontSize: 18, color: colors.neutral.white, marginTop: 6 }}>
+            {cluster.label}
+          </div>
+        </div>
+      ))}
+      <div
+        style={{
+          width: 130,
+          height: 4,
+          background: `linear-gradient(90deg, ${colors.primary.blue}, ${colors.primary.purple})`,
+          opacity: connectionOpacity,
+          boxShadow: '0 0 20px rgba(0,0,0,0.5)',
+        }}
+      />
+      <div
+        style={{
+          border: '2px dashed rgba(255,255,255,0.5)',
+          borderRadius: 20,
+          padding: '10px 18px',
+          color: colors.neutral.white,
+          ...fontPresets.body,
+          fontSize: 18,
+          opacity: 0.8,
+        }}
+      >
+        Network Partition
+      </div>
+    </div>
+  );
+};
+
+const TradeoffDial = () => {
+  const frame = useCurrentFrame();
+  const cycle = (frame % 240) / 240;
+  const highlightCP = cycle < 0.5;
+  const pointerAngle = highlightCP ? -35 + Math.sin(frame / 10) * 4 : 35 + Math.sin(frame / 10) * 4;
+
+  const activeColor = highlightCP ? colors.primary.blue : colors.accent.green;
+  const activeLabel = highlightCP ? 'Consistency + Partition' : 'Availability + Partition';
+
+  const nodes = [
+    { label: 'C', color: colors.primary.blue, angle: -90 },
+    { label: 'A', color: colors.accent.green, angle: 30 },
+    { label: 'P', color: colors.primary.purple, angle: 150 },
+  ];
+
+  const nodePosition = (angle: number) => {
+    const radians = (angle * Math.PI) / 180;
+    return {
+      x: 150 + Math.cos(radians) * 95,
+      y: 150 + Math.sin(radians) * 95,
+    };
+  };
+
+  return (
+    <div
+      style={{
+        padding: 30,
+        borderRadius: 40,
+        background: `${colors.neutral.medium}AA`,
+        border: `1px solid ${colors.neutral.light}30`,
+        boxShadow: '0 25px 60px rgba(0,0,0,0.4)',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        gap: 16,
+      }}
+    >
+      <svg width="300" height="300" viewBox="0 0 300 300">
+        <circle cx="150" cy="150" r="110" stroke={`${colors.neutral.light}30`} strokeWidth="3" fill="none" />
+        <circle cx="150" cy="150" r="50" stroke={`${colors.neutral.light}30`} strokeWidth="2" fill="none" />
+        <line
+          x1="150"
+          y1="150"
+          x2={150 + Math.cos((pointerAngle * Math.PI) / 180) * 100}
+          y2={150 + Math.sin((pointerAngle * Math.PI) / 180) * 100}
+          stroke={activeColor}
+          strokeWidth="6"
+          strokeLinecap="round"
+        />
+        <circle cx="150" cy="150" r="9" fill={activeColor} />
+        {nodes.map((node) => {
+          const pos = nodePosition(node.angle);
+          const isActive =
+            (highlightCP && (node.label === 'C' || node.label === 'P')) ||
+            (!highlightCP && (node.label === 'A' || node.label === 'P'));
+          return (
+            <g key={node.label}>
+              <circle
+                cx={pos.x}
+                cy={pos.y}
+                r={isActive ? 20 : 16}
+                fill={`${node.color}${isActive ? '50' : '25'}`}
+                stroke={node.color}
+                strokeWidth={isActive ? 4 : 2}
+              />
+              <text
+                x={pos.x}
+                y={pos.y + 6}
+                textAnchor="middle"
+                fontSize="18"
+                fill={colors.neutral.white}
+                style={{ fontFamily: fontPresets.heading.fontFamily }}
+              >
+                {node.label}
+              </text>
+            </g>
+          );
+        })}
+      </svg>
+      <div style={{ ...fontPresets.body, fontSize: 24, color: colors.neutral.white, textAlign: 'center' }}>{activeLabel}</div>
+      <div
+        style={{
+          ...fontPresets.body,
+          fontSize: 18,
+          color: colors.neutral.light,
+          textAlign: 'center',
+          opacity: 0.9,
+        }}
+      >
+        Systems oscillate between priorities as partitions occur
       </div>
     </div>
   );
@@ -192,28 +548,42 @@ export const Scene3_CAPTheorem: React.FC = () => {
           </div>
 
           {/* Content - Uses remaining vertical space */}
-          <div style={{ display: 'flex', gap: 50, justifyContent: 'center', alignItems: 'flex-start', flex: 1 }}>
-            <CAPProperty
-              letter="C"
-              name="Consistency"
-              description="All nodes see the same data at the same time"
-              color={colors.primary.blue}
-              delay={40}
-            />
-            <CAPProperty
-              letter="A"
-              name="Availability"
-              description="Every request gets a response (success or failure)"
-              color={colors.accent.green}
-              delay={80}
-            />
-            <CAPProperty
-              letter="P"
-              name="Partition Tolerance"
-              description="System works despite network failures"
-              color={colors.primary.purple}
-              delay={120}
-            />
+          <div
+            style={{
+              display: 'flex',
+              gap: 24,
+              justifyContent: 'center',
+              alignItems: 'stretch',
+              flex: 1,
+              flexWrap: 'nowrap',
+            }}
+          >
+            <div style={{ display: 'flex', gap: 24, justifyContent: 'center', alignItems: 'stretch', flex: 1, flexWrap: 'nowrap' }}>
+              <CAPProperty
+                letter="C"
+                name="Consistency"
+                description="All nodes see the same data at the same time"
+                color={colors.primary.blue}
+                delay={40}
+                Visual={ConsistencyVisualization}
+              />
+              <CAPProperty
+                letter="A"
+                name="Availability"
+                description="Every request gets a response (success or failure)"
+                color={colors.accent.green}
+                delay={80}
+                Visual={AvailabilityVisualization}
+              />
+              <CAPProperty
+                letter="P"
+                name="Partition Tolerance"
+                description="System works despite network failures"
+                color={colors.primary.purple}
+                delay={120}
+                Visual={PartitionToleranceVisualization}
+              />
+            </div>
           </div>
 
           {/* Bottom insight */}
@@ -254,6 +624,19 @@ export const Scene3_CAPTheorem: React.FC = () => {
           }}
         >
           <Title text="Pick Any 2" delay={0} size={85} />
+
+          <div
+            style={{
+              display: 'flex',
+              gap: 40,
+              flexWrap: 'wrap',
+              justifyContent: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <PartitionVisualizer />
+            <TradeoffDial />
+          </div>
 
           <div
             style={{

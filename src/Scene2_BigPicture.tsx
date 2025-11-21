@@ -183,6 +183,62 @@ const UseCaseTag = ({ text, delay = 0, color }: { text: string; delay?: number; 
   );
 };
 
+const AssetBadge = ({
+  label,
+  Icon,
+  delay = 0,
+  color,
+}: {
+  label: string;
+  Icon: React.ComponentType<{ size?: number }>;
+  delay?: number;
+  color: string;
+}) => {
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+
+  const opacity = spring({
+    frame: frame - delay,
+    fps,
+    config: { damping: 80 },
+  });
+
+  const rise = spring({
+    frame: frame - delay,
+    fps,
+    from: 20,
+    to: 0,
+    config: { damping: 14 },
+  });
+
+  return (
+    <div
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: 12,
+        padding: '14px 22px',
+        borderRadius: 16,
+        border: `2px solid ${color}60`,
+        background: `${color}12`,
+        transform: `translateY(${rise}px)`,
+        opacity,
+      }}
+    >
+      <Icon size={58} />
+      <div
+        style={{
+          ...fontPresets.body,
+          fontSize: 26,
+          color: colors.neutral.white,
+        }}
+      >
+        {label}
+      </div>
+    </div>
+  );
+};
+
 // Title with enhanced animation
 const Title = ({ text, delay = 0, size = 80 }: { text: string; delay?: number; size?: number }) => {
   const frame = useCurrentFrame();
@@ -425,11 +481,15 @@ const ArchitectureLayer = ({
   icon: Icon,
   delay = 0,
   metrics,
+  compact = false,
+  style = {},
 }: {
   label: string;
   icon: React.ComponentType<any>;
   delay?: number;
   metrics?: { label: string; value: number; color: string }[];
+  compact?: boolean;
+  style?: React.CSSProperties;
 }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
@@ -455,20 +515,24 @@ const ArchitectureLayer = ({
         opacity,
         display: 'flex',
         alignItems: 'center',
-        gap: 30,
+        gap: compact ? 24 : 30,
         background: `${colors.neutral.medium}DD`,
-        padding: '22px 45px',
+        padding: compact ? '18px 40px' : '22px 45px',
         borderRadius: 15,
         border: `3px solid ${colors.primary.blue}`,
-        minWidth: 700,
+        minWidth: compact ? 260 : 700,
+        flex: compact ? 1 : undefined,
+        width: compact ? '100%' : undefined,
+        maxWidth: compact ? 400 : undefined,
+        ...style,
       }}
     >
-      <Icon size={75} />
+      <Icon size={compact ? 65 : 75} />
       <div style={{ flex: 1 }}>
         <div
           style={{
             ...fontPresets.body,
-            fontSize: 36,
+            fontSize: compact ? 32 : 36,
             color: colors.neutral.white,
             marginBottom: metrics ? 12 : 0,
           }}
@@ -641,6 +705,22 @@ export const Scene2_BigPicture: React.FC = () => {
             </div>
           </div>
 
+          <div
+            style={{
+              marginTop: 30,
+              display: 'flex',
+              flexWrap: 'wrap',
+              justifyContent: 'center',
+              gap: 24,
+              width: '100%',
+            }}
+          >
+            <AssetBadge label="Streaming Pipelines" Icon={TransformingDataIcon} delay={240} color={colors.primary.purple} />
+            <AssetBadge label="Realtime Dashboards" Icon={MovingDataIcon} delay={255} color={colors.primary.blue} />
+            <AssetBadge label="Data Lakes" Icon={StoringDataIcon} delay={270} color={colors.accent.green} />
+            <AssetBadge label="ML Feature Stores" Icon={DatabaseIconLarge} delay={285} color={colors.accent.gold} />
+          </div>
+
           {/* Bottom text with better spacing */}
           <div
             style={{
@@ -676,66 +756,61 @@ export const Scene2_BigPicture: React.FC = () => {
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'space-between',
-            padding: '70px 100px',
+            padding: '60px 100px',
           }}
         >
-          <Title text="At Scale" delay={0} size={90} />
+          <Title text="At Scale" delay={0} size={80} />
 
           {/* Architecture stack with metrics */}
           <div
             style={{
               display: 'flex',
-              flexDirection: 'column',
-              gap: 28,
-              alignItems: 'center',
+              gap: 24,
+              alignItems: 'stretch',
+              justifyContent: 'center',
+              flexWrap: 'nowrap',
+              width: '100%',
+              maxWidth: 1400,
             }}
           >
             <ArchitectureLayer
               label="Users (Millions)"
               icon={UserIconLarge}
               delay={50}
+              compact
               metrics={[
                 { label: 'Online', value: 85, color: colors.accent.green },
                 { label: 'Active', value: 62, color: colors.primary.blue },
               ]}
             />
 
-            <div style={{ opacity: spring({ frame: useCurrentFrame() - 1280, fps, config: { damping: 100 } }) }}>
-              <AnimatedArrow delay={80} direction="down" />
-            </div>
-
             <ArchitectureLayer
               label="Load Balancer"
               icon={NetworkIconLarge}
               delay={140}
+              compact
               metrics={[
                 { label: 'CPU', value: 45, color: colors.accent.gold },
                 { label: 'Requests/s', value: 78, color: colors.primary.purple },
               ]}
             />
 
-            <div style={{ opacity: spring({ frame: useCurrentFrame() - 1360, fps, config: { damping: 100 } }) }}>
-              <AnimatedArrow delay={170} direction="down" />
-            </div>
-
             <ArchitectureLayer
               label="Application Servers"
               icon={ServerIconLarge}
               delay={230}
+              compact
               metrics={[
                 { label: 'Load', value: 68, color: colors.accent.orange },
                 { label: 'Memory', value: 55, color: colors.primary.blue },
               ]}
             />
 
-            <div style={{ opacity: spring({ frame: useCurrentFrame() - 1440, fps, config: { damping: 100 } }) }}>
-              <AnimatedArrow delay={260} direction="down" />
-            </div>
-
             <ArchitectureLayer
               label="Cache + Database"
               icon={DatabaseIconLarge}
               delay={320}
+              compact
               metrics={[
                 { label: 'Hit Rate', value: 92, color: colors.accent.green },
                 { label: 'Throughput', value: 88, color: colors.primary.purple },
@@ -747,11 +822,11 @@ export const Scene2_BigPicture: React.FC = () => {
           <div
             style={{
               ...fontPresets.body,
-              fontSize: 27,
+              fontSize: 24,
               color: colors.neutral.white,
               textAlign: 'center',
               maxWidth: 1050,
-              lineHeight: 1.4,
+              lineHeight: 1.35,
               opacity: spring({
                 frame: useCurrentFrame() - 450,
                 fps,
