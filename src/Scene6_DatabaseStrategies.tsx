@@ -1,6 +1,8 @@
 import { AbsoluteFill, Sequence, spring, useCurrentFrame, useVideoConfig } from 'remotion';
 import { colors, createGradient } from './utils/colors';
 import { fontPresets } from './utils/fonts';
+import { ParticleBackground, GridBackground } from './components/AnimatedBackground';
+import { FadeTransition } from './components/Transitions';
 
 // Database comparison card
 const DBCard = ({
@@ -244,8 +246,12 @@ export const Scene6_DatabaseStrategies: React.FC = () => {
         fontFamily: fontPresets.body.fontFamily,
       }}
     >
+      <ParticleBackground particleCount={12} particleColor={`${colors.accent.gold}20`} />
+      <GridBackground gridSize={65} gridColor={`${colors.neutral.light}08`} />
+
       {/* PART 1: SQL Database (0-720 frames / 0-24 seconds) */}
       <Sequence from={0} durationInFrames={720}>
+        <FadeTransition startFrame={0} duration={30} type="in" />
         <AbsoluteFill
           style={{
             display: 'flex',
@@ -268,8 +274,14 @@ export const Scene6_DatabaseStrategies: React.FC = () => {
         </AbsoluteFill>
       </Sequence>
 
+      {/* Transition: Part 1 to Part 2 */}
+      <Sequence from={690} durationInFrames={30}>
+        <FadeTransition startFrame={690} duration={30} type="out" />
+      </Sequence>
+
       {/* PART 2: NoSQL Database (720-1440 frames / 24-48 seconds) */}
       <Sequence from={720} durationInFrames={720}>
+        <FadeTransition startFrame={720} duration={30} type="in" />
         <AbsoluteFill
           style={{
             display: 'flex',
@@ -292,8 +304,14 @@ export const Scene6_DatabaseStrategies: React.FC = () => {
         </AbsoluteFill>
       </Sequence>
 
+      {/* Transition: Part 2 to Part 3 */}
+      <Sequence from={1410} durationInFrames={30}>
+        <FadeTransition startFrame={1410} duration={30} type="out" />
+      </Sequence>
+
       {/* PART 3: In-Memory (1440-2160 frames / 48-72 seconds) */}
       <Sequence from={1440} durationInFrames={720}>
+        <FadeTransition startFrame={1440} duration={30} type="in" />
         <AbsoluteFill
           style={{
             display: 'flex',
@@ -316,8 +334,14 @@ export const Scene6_DatabaseStrategies: React.FC = () => {
         </AbsoluteFill>
       </Sequence>
 
+      {/* Transition: Part 3 to Part 4 */}
+      <Sequence from={2130} durationInFrames={30}>
+        <FadeTransition startFrame={2130} duration={30} type="out" />
+      </Sequence>
+
       {/* PART 4: Sharding (2160-2880 frames / 72-96 seconds) */}
       <Sequence from={2160} durationInFrames={720}>
+        <FadeTransition startFrame={2160} duration={30} type="in" />
         <AbsoluteFill
           style={{
             display: 'flex',
@@ -336,8 +360,14 @@ export const Scene6_DatabaseStrategies: React.FC = () => {
         </AbsoluteFill>
       </Sequence>
 
+      {/* Transition: Part 4 to Part 5 */}
+      <Sequence from={2850} durationInFrames={30}>
+        <FadeTransition startFrame={2850} duration={30} type="out" />
+      </Sequence>
+
       {/* PART 5: Replication (2880-3600 frames / 96-120 seconds) */}
       <Sequence from={2880} durationInFrames={720}>
+        <FadeTransition startFrame={2880} duration={30} type="in" />
         <AbsoluteFill
           style={{
             display: 'flex',

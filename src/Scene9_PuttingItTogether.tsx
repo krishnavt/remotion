@@ -280,12 +280,28 @@ export const Scene9_PuttingItTogether: React.FC = () => {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            padding: '80px 60px',
-            gap: 50,
+            justifyContent: 'space-between',
+            padding: '100px 120px',
           }}
         >
           <Title text="Photo Upload Flow" delay={0} />
           <ExampleFlow delay={30} />
+          <div
+            style={{
+              ...fontPresets.body,
+              fontSize: 30,
+              color: colors.neutral.white,
+              textAlign: 'center',
+              maxWidth: 1000,
+              opacity: spring({
+                frame: useCurrentFrame() - 1380,
+                fps: useVideoConfig().fps,
+                config: { damping: 100 },
+              }) * 0.85,
+            }}
+          >
+            Combining these concepts creates robust, scalable systems that handle millions of users
+          </div>
         </AbsoluteFill>
       </Sequence>
     </AbsoluteFill>

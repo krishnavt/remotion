@@ -1,4 +1,5 @@
 import { Composition } from 'remotion';
+import { BrandIntro } from './components/BrandIntro';
 import { Scene1_HookIntro } from './Scene1_HookIntro';
 import { Scene2_BigPicture } from './Scene2_BigPicture';
 import { Scene3_CAPTheorem } from './Scene3_CAPTheorem';
@@ -13,6 +14,14 @@ import { Scene10_Outro } from './Scene10_Outro';
 export const RemotionRoot: React.FC = () => {
   return (
     <>
+      <Composition
+        id="00-BrandIntro"
+        component={BrandIntro}
+        durationInFrames={150} // 5 seconds at 30fps
+        fps={30}
+        width={1920}
+        height={1080}
+      />
       <Composition
         id="Scene1-HookIntro"
         component={Scene1_HookIntro}

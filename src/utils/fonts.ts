@@ -2,10 +2,21 @@ import { loadFont } from '@remotion/google-fonts/Inter';
 import { loadFont as loadRoboto } from '@remotion/google-fonts/Roboto';
 import { loadFont as loadPoppins } from '@remotion/google-fonts/Poppins';
 
-// Load professional fonts
-export const { fontFamily: InterFont } = loadFont();
-export const { fontFamily: RobotoFont } = loadRoboto();
-export const { fontFamily: PoppinsFont } = loadPoppins();
+// Load professional fonts with optimized weights and subsets
+export const { fontFamily: InterFont } = loadFont('normal', {
+  weights: ['400', '600'],
+  subsets: ['latin'],
+});
+
+export const { fontFamily: RobotoFont } = loadRoboto('normal', {
+  weights: ['400', '500', '700'],
+  subsets: ['latin'],
+});
+
+export const { fontFamily: PoppinsFont } = loadPoppins('normal', {
+  weights: ['400', '600', '700'],
+  subsets: ['latin'],
+});
 
 // Font presets for different text types
 export const fontPresets = {

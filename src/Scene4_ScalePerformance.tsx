@@ -2,6 +2,8 @@ import { AbsoluteFill, Sequence, spring, useCurrentFrame, useVideoConfig, interp
 import { colors, createGradient } from './utils/colors';
 import { fontPresets } from './utils/fonts';
 import { constrainSize } from './utils/layout';
+import { AnimatedBackground, GridBackground } from './components/AnimatedBackground';
+import { FadeTransition } from './components/Transitions';
 
 // Animated counter component
 const AnimatedCounter = ({
@@ -399,6 +401,10 @@ export const Scene4_ScalePerformance: React.FC = () => {
         fontFamily: fontPresets.body.fontFamily,
       }}
     >
+      {/* Animated backgrounds */}
+      <AnimatedBackground speed={0.4} colorStart={colors.neutral.dark} colorEnd={`${colors.primary.blue}15`} />
+      <GridBackground gridSize={70} gridColor={`${colors.neutral.light}07`} />
+
       {/* PART 1: Growing numbers (0-360 frames / 0-12 seconds) */}
       <Sequence from={0} durationInFrames={360}>
         <AbsoluteFill
@@ -406,9 +412,8 @@ export const Scene4_ScalePerformance: React.FC = () => {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            justifyContent: 'center',
-            gap: 60,
-            padding: '80px 60px',
+            justifyContent: 'space-between',
+            padding: '100px 120px',
           }}
         >
           <Title text="What is Scale?" delay={0} />
@@ -436,19 +441,41 @@ export const Scene4_ScalePerformance: React.FC = () => {
               color={colors.primary.purple}
             />
           </div>
+
+          <div
+            style={{
+              ...fontPresets.body,
+              fontSize: 32,
+              color: colors.neutral.white,
+              textAlign: 'center',
+              maxWidth: 1100,
+              opacity: spring({
+                frame: useCurrentFrame() - 150,
+                fps: 30,
+                config: { damping: 100 },
+              }) * 0.85,
+            }}
+          >
+            Scale is not just about size - it's about handling growth while maintaining performance
+          </div>
         </AbsoluteFill>
+      </Sequence>
+
+      {/* Transition: Part 1 to Part 2 */}
+      <Sequence from={330} durationInFrames={30}>
+        <FadeTransition startFrame={330} duration={30} type="out" />
       </Sequence>
 
       {/* PART 2: Scale metric cards (360-900 frames / 12-30 seconds) */}
       <Sequence from={360} durationInFrames={540}>
+        <FadeTransition startFrame={360} duration={30} type="in" />
         <AbsoluteFill
           style={{
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            justifyContent: 'center',
-            gap: 60,
-            padding: '80px 60px',
+            justifyContent: 'space-between',
+            padding: '100px 120px',
           }}
         >
           <Title text="Scale Metrics" delay={0} size={70} />
@@ -479,19 +506,41 @@ export const Scene4_ScalePerformance: React.FC = () => {
               delay={90}
             />
           </div>
+
+          <div
+            style={{
+              ...fontPresets.body,
+              fontSize: 30,
+              color: colors.neutral.white,
+              textAlign: 'center',
+              maxWidth: 1000,
+              opacity: spring({
+                frame: useCurrentFrame() - 390,
+                fps: 30,
+                config: { damping: 100 },
+              }) * 0.85,
+            }}
+          >
+            These numbers grow exponentially - your system must scale horizontally to handle the load
+          </div>
         </AbsoluteFill>
+      </Sequence>
+
+      {/* Transition: Part 2 to Part 3 */}
+      <Sequence from={870} durationInFrames={30}>
+        <FadeTransition startFrame={870} duration={30} type="out" />
       </Sequence>
 
       {/* PART 3: Throughput vs Latency racing cars (900-1500 frames / 30-50 seconds) */}
       <Sequence from={900} durationInFrames={600}>
+        <FadeTransition startFrame={900} duration={30} type="in" />
         <AbsoluteFill
           style={{
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            justifyContent: 'center',
-            gap: 80,
-            padding: '80px 60px',
+            justifyContent: 'space-between',
+            padding: '100px 120px',
           }}
         >
           <Title text="Performance Metrics" delay={0} />
@@ -531,36 +580,79 @@ export const Scene4_ScalePerformance: React.FC = () => {
               </div>
             </div>
           </div>
+
+          <div
+            style={{
+              ...fontPresets.body,
+              fontSize: 30,
+              color: colors.neutral.white,
+              textAlign: 'center',
+              maxWidth: 1000,
+              opacity: spring({
+                frame: useCurrentFrame() - 930,
+                fps: 30,
+                config: { damping: 100 },
+              }) * 0.85,
+            }}
+          >
+            Throughput measures capacity, latency measures speed - both matter for user experience
+          </div>
         </AbsoluteFill>
+      </Sequence>
+
+      {/* Transition: Part 3 to Part 4 */}
+      <Sequence from={1470} durationInFrames={30}>
+        <FadeTransition startFrame={1470} duration={30} type="out" />
       </Sequence>
 
       {/* PART 4: Trade-off see-saw (1500-2100 frames / 50-70 seconds) */}
       <Sequence from={1500} durationInFrames={600}>
+        <FadeTransition startFrame={1500} duration={30} type="in" />
         <AbsoluteFill
           style={{
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            justifyContent: 'center',
-            gap: 60,
-            padding: '80px 60px',
+            justifyContent: 'space-between',
+            padding: '100px 120px',
           }}
         >
           <Title text="The Trade-off" delay={0} />
           <SeeSaw tiltLeft={useCurrentFrame() - 1500 > 150} delay={30} />
+          <div
+            style={{
+              ...fontPresets.body,
+              fontSize: 32,
+              color: colors.neutral.white,
+              textAlign: 'center',
+              maxWidth: 1000,
+              opacity: spring({
+                frame: useCurrentFrame() - 1530,
+                fps: 30,
+                config: { damping: 100 },
+              }) * 0.85,
+            }}
+          >
+            Optimizing for throughput often increases latency, and vice versa - find the right balance
+          </div>
         </AbsoluteFill>
+      </Sequence>
+
+      {/* Transition: Part 4 to Part 5 */}
+      <Sequence from={2070} durationInFrames={30}>
+        <FadeTransition startFrame={2070} duration={30} type="out" />
       </Sequence>
 
       {/* PART 5: Availability nines (2100-2700 frames / 70-90 seconds) */}
       <Sequence from={2100} durationInFrames={600}>
+        <FadeTransition startFrame={2100} duration={30} type="in" />
         <AbsoluteFill
           style={{
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            justifyContent: 'center',
-            gap: 80,
-            padding: '80px 60px',
+            justifyContent: 'space-between',
+            padding: '100px 120px',
           }}
         >
           <Title text="Availability Nines" delay={0} />
@@ -569,18 +661,43 @@ export const Scene4_ScalePerformance: React.FC = () => {
 
           <div
             style={{
-              ...fontPresets.body,
-              fontSize: 38,
-              color: colors.neutral.white,
-              textAlign: 'center',
-              opacity: spring({
-                frame: useCurrentFrame() - 2160,
-                fps: 30,
-                config: { damping: 100 },
-              }),
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 30,
+              alignItems: 'center',
             }}
           >
-            Every nine counts
+            <div
+              style={{
+                ...fontPresets.heading,
+                fontSize: 42,
+                color: colors.accent.green,
+                textAlign: 'center',
+                opacity: spring({
+                  frame: useCurrentFrame() - 2130,
+                  fps: 30,
+                  config: { damping: 100 },
+                }),
+              }}
+            >
+              Every nine counts
+            </div>
+            <div
+              style={{
+                ...fontPresets.body,
+                fontSize: 28,
+                color: colors.neutral.white,
+                textAlign: 'center',
+                maxWidth: 900,
+                opacity: spring({
+                  frame: useCurrentFrame() - 2160,
+                  fps: 30,
+                  config: { damping: 100 },
+                }) * 0.85,
+              }}
+            >
+              Moving from 99.9% to 99.99% means reducing downtime by 90% - a significant business impact
+            </div>
           </div>
         </AbsoluteFill>
       </Sequence>

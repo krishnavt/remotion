@@ -1,6 +1,8 @@
 import { AbsoluteFill, Sequence, spring, useCurrentFrame, useVideoConfig, interpolate } from 'remotion';
 import { colors, createGradient } from './utils/colors';
 import { fontPresets } from './utils/fonts';
+import { ParticleBackground, GridBackground } from './components/AnimatedBackground';
+import { FadeTransition } from './components/Transitions';
 
 // Message Queue Flow Component
 const QueueFlow = ({ delay = 0 }: { delay?: number }) => {
@@ -307,6 +309,9 @@ export const Scene8_MessageQueues: React.FC = () => {
         fontFamily: fontPresets.body.fontFamily,
       }}
     >
+      <ParticleBackground particleCount={18} particleColor={`${colors.primary.purple}18`} />
+      <GridBackground gridSize={60} gridColor={`${colors.neutral.light}07`} />
+
       {/* PART 1: Why Async? (0-750 frames / 0-25 seconds) */}
       <Sequence from={0} durationInFrames={750}>
         <AbsoluteFill
@@ -324,6 +329,11 @@ export const Scene8_MessageQueues: React.FC = () => {
         </AbsoluteFill>
       </Sequence>
 
+      {/* Transition: Part 1 to Part 2 */}
+      <Sequence from={720} durationInFrames={30}>
+        <FadeTransition startFrame={720} duration={30} type="out" />
+      </Sequence>
+
       {/* PART 2: Message Queue Basics (750-1650 frames / 25-55 seconds) */}
       <Sequence from={750} durationInFrames={900}>
         <AbsoluteFill
@@ -336,9 +346,15 @@ export const Scene8_MessageQueues: React.FC = () => {
             padding: '80px 60px',
           }}
         >
+          <FadeTransition startFrame={750} duration={30} type="in" />
           <Title text="Message Queue Flow" delay={0} />
           <QueueFlow delay={40} />
         </AbsoluteFill>
+      </Sequence>
+
+      {/* Transition: Part 2 to Part 3 */}
+      <Sequence from={1620} durationInFrames={30}>
+        <FadeTransition startFrame={1620} duration={30} type="out" />
       </Sequence>
 
       {/* PART 3: Use Cases (1650-2700 frames / 55-90 seconds) */}
@@ -352,6 +368,7 @@ export const Scene8_MessageQueues: React.FC = () => {
             gap: 50,
           }}
         >
+          <FadeTransition startFrame={1650} duration={30} type="in" />
           <Title text="Common Use Cases" delay={0} />
 
           <div style={{ display: 'flex', gap: 40, marginTop: 30, justifyContent: 'center' }}>

@@ -1,6 +1,8 @@
 import { AbsoluteFill, Sequence, spring, useCurrentFrame, useVideoConfig } from 'remotion';
 import { colors, createGradient } from './utils/colors';
 import { fontPresets } from './utils/fonts';
+import { AnimatedBackground, GridBackground } from './components/AnimatedBackground';
+import { FadeTransition } from './components/Transitions';
 
 // Layer Component - Redesigned for better spacing
 const Layer = ({
@@ -227,6 +229,9 @@ export const Scene5_ArchitectureLayers: React.FC = () => {
         fontFamily: fontPresets.body.fontFamily,
       }}
     >
+      <AnimatedBackground speed={0.35} colorStart={colors.neutral.dark} colorEnd={`${colors.accent.green}12`} />
+      <GridBackground gridSize={80} gridColor={`${colors.neutral.light}06`} />
+
       {/* PART 1: Introduction (0-450 frames / 0-15 seconds) */}
       <Sequence from={0} durationInFrames={450}>
         <AbsoluteFill
@@ -240,8 +245,14 @@ export const Scene5_ArchitectureLayers: React.FC = () => {
         </AbsoluteFill>
       </Sequence>
 
+      {/* Transition: Part 1 to Part 2 */}
+      <Sequence from={420} durationInFrames={30}>
+        <FadeTransition startFrame={420} duration={30} type="out" />
+      </Sequence>
+
       {/* PART 2: Build layers (450-2700 frames / 15-90 seconds) */}
       <Sequence from={450} durationInFrames={2250}>
+        <FadeTransition startFrame={450} duration={30} type="in" />
         <AbsoluteFill
           style={{
             display: 'flex',
@@ -293,8 +304,14 @@ export const Scene5_ArchitectureLayers: React.FC = () => {
         </AbsoluteFill>
       </Sequence>
 
+      {/* Transition: Part 2 to Part 3 */}
+      <Sequence from={2670} durationInFrames={30}>
+        <FadeTransition startFrame={2670} duration={30} type="out" />
+      </Sequence>
+
       {/* PART 3: Request flow (2700-3600 frames / 90-120 seconds) */}
       <Sequence from={2700} durationInFrames={900}>
+        <FadeTransition startFrame={2700} duration={30} type="in" />
         <AbsoluteFill
           style={{
             display: 'flex',

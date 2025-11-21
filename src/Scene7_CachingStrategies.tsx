@@ -1,6 +1,8 @@
 import { AbsoluteFill, Sequence, spring, useCurrentFrame, useVideoConfig, interpolate } from 'remotion';
 import { colors, createGradient } from './utils/colors';
 import { fontPresets } from './utils/fonts';
+import { AnimatedBackground, GridBackground } from './components/AnimatedBackground';
+import { FadeTransition } from './components/Transitions';
 
 // Cache Layer Component
 const CacheLayer = ({
@@ -271,6 +273,9 @@ export const Scene7_CachingStrategies: React.FC = () => {
         fontFamily: fontPresets.body.fontFamily,
       }}
     >
+      <AnimatedBackground speed={0.45} colorStart={colors.neutral.dark} colorEnd={`${colors.accent.orange}15`} />
+      <GridBackground gridSize={55} gridColor={`${colors.neutral.light}09`} />
+
       {/* PART 1: What is Caching? (0-600 frames / 0-20 seconds) */}
       <Sequence from={0} durationInFrames={600}>
         <AbsoluteFill
@@ -291,8 +296,14 @@ export const Scene7_CachingStrategies: React.FC = () => {
         </AbsoluteFill>
       </Sequence>
 
+      {/* Transition: Part 1 to Part 1.5 */}
+      <Sequence from={570} durationInFrames={30}>
+        <FadeTransition startFrame={570} duration={30} type="out" />
+      </Sequence>
+
       {/* PART 1.5: Benefits (600-900 frames / 20-30 seconds) */}
       <Sequence from={600} durationInFrames={300}>
+        <FadeTransition startFrame={600} duration={30} type="in" />
         <AbsoluteFill
           style={{
             display: 'flex',
@@ -360,8 +371,14 @@ export const Scene7_CachingStrategies: React.FC = () => {
         </AbsoluteFill>
       </Sequence>
 
+      {/* Transition: Part 1.5 to Part 2 */}
+      <Sequence from={870} durationInFrames={30}>
+        <FadeTransition startFrame={870} duration={30} type="out" />
+      </Sequence>
+
       {/* PART 2: Cache Layers (900-1650 frames / 30-55 seconds) */}
       <Sequence from={900} durationInFrames={750}>
+        <FadeTransition startFrame={900} duration={30} type="in" />
         <AbsoluteFill
           style={{
             display: 'flex',
@@ -402,8 +419,14 @@ export const Scene7_CachingStrategies: React.FC = () => {
         </AbsoluteFill>
       </Sequence>
 
+      {/* Transition: Part 2 to Part 3 */}
+      <Sequence from={1620} durationInFrames={30}>
+        <FadeTransition startFrame={1620} duration={30} type="out" />
+      </Sequence>
+
       {/* PART 3: Cache Strategies (1650-2700 frames / 55-90 seconds) */}
       <Sequence from={1650} durationInFrames={1050}>
+        <FadeTransition startFrame={1650} duration={30} type="in" />
         <AbsoluteFill
           style={{
             display: 'flex',
