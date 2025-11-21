@@ -1,0 +1,45 @@
+# Video Requirements Checklist
+# This file defines the requirements for all videos created in this project
+# Check these requirements before rendering any video
+
+## Video Quality Standards
+- HD Resolution: 1080p (1920x1080)
+- Frame Rate: 30 FPS minimum
+- Audio Quality: 48kHz, stereo
+- Video Format: MP4 (H.264)
+
+## Visual Design Guidelines
+- No bold/aggressive colors - use professional, muted color palette
+- Consistent branding and typography
+- Clean, educational presentation suitable for YouTube teaching content
+- Professional color scheme (blues, grays, whites, subtle accents)
+- Avoid neon/flashy colors that might distract from educational content
+
+## Content Guidelines
+- No script text overlay on video (voice over only)
+- Educational content focused
+- Professional presentation style
+- Clear visual hierarchy
+- Consistent timing and pacing
+
+## Technical Requirements
+- Export settings optimized for YouTube
+- Proper aspect ratio (16:9)
+- Consistent audio levels
+- Smooth animations and transitions
+- Optimized file size for web delivery
+
+## YouTube Optimization
+- Thumbnail-friendly composition
+- Clear visual elements that work at small sizes
+- Professional appearance for educational content
+- Engagement-focused visual design
+
+## Pre-render Checklist
+1. ✅ Resolution set to 1920x1080
+2. ✅ Frame rate set to 30 FPS
+3. ✅ Color palette reviewed for professionalism
+4. ✅ No text overlay of script content
+5. ✅ Audio levels checked
+6. ✅ Animation timing verified
+7. ✅ Export settings configured for YouTube
