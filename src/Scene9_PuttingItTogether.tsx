@@ -107,7 +107,7 @@ const ArchitectureStack = ({ delay = 0 }: { delay?: number }) => {
           <div style={{ ...fontPresets.heading, fontSize: 64, color: layer.color, minWidth: 360 }}>
             {layer.label}
           </div>
-          <div style={{ display: 'flex', gap: 24 }}>
+          <div style={{ display: 'flex', justifyContent: 'center', gap: 24 }}>
             {layer.items.map((item, j) => (
               <div
                 key={j}

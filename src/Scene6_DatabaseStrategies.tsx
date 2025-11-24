@@ -45,7 +45,7 @@ const DBCard = ({
         maxWidth: 900,
       }}
     >
-      <div style={{ display: 'flex', alignItems: 'center', gap: 40 }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 40 }}>
         <Icon size={140} color={color} />
         <div style={{ ...fontPresets.heading, fontSize: 84, color }}>
           {type}
@@ -94,7 +94,7 @@ const ShardingDiagram = ({ delay = 0 }: { delay?: number }) => {
   ];
 
   return (
-    <div style={{ display: 'flex', gap: 80, opacity: spring({ frame: frame - delay, fps, config: { damping: 100 } }) }}>
+    <div style={{ display: 'flex', justifyContent: 'center', gap: 80, opacity: spring({ frame: frame - delay, fps, config: { damping: 100 } }) }}>
       {shards.map((shard, i) => (
         <div
           key={i}
@@ -166,7 +166,7 @@ const ReplicationDiagram = ({ delay = 0 }: { delay?: number }) => {
       <div style={{ color: colors.neutral.gray, fontSize: 80 }}>↓</div>
 
       {/* Slaves */}
-      <div style={{ display: 'flex', gap: 60 }}>
+      <div style={{ display: 'flex', justifyContent: 'center', gap: 60 }}>
         {['Slave 1', 'Slave 2', 'Slave 3'].map((slave, i) => (
           <div
             key={i}

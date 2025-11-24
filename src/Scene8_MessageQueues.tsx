@@ -109,7 +109,7 @@ const QueueFlow = ({ delay = 0 }: { delay?: number }) => {
           }}
         >
           <div style={{ fontSize: 100 }}>📬</div>
-          <div style={{ display: 'flex', gap: 16 }}>
+          <div style={{ display: 'flex', justifyContent: 'center', gap: 16 }}>
             {[1, 2, 3].map((i) => (
               <div
                 key={i}
@@ -229,7 +229,7 @@ const SyncVsAsync = ({ delay = 0 }: { delay?: number }) => {
   const { fps } = useVideoConfig();
 
   return (
-    <div style={{ display: 'flex', gap: 160, opacity: spring({ frame: frame - delay, fps, config: { damping: 100 } }) }}>
+    <div style={{ display: 'flex', justifyContent: 'center', gap: 160, opacity: spring({ frame: frame - delay, fps, config: { damping: 100 } }) }}>
       {/* Synchronous - Slow */}
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 40 }}>
         <div

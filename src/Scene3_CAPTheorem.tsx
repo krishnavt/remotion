@@ -1,4 +1,4 @@
-import { AbsoluteFill, Sequence, spring, useCurrentFrame, useVideoConfig } from 'remotion';
+import { AbsoluteFill, Sequence, spring, useCurrentFrame, useVideoConfig, interpolate } from 'remotion';
 import { colors, createGradient } from './utils/colors';
 import { fontPresets } from './utils/fonts';
 import { ParticleBackground, GridBackground } from './components/AnimatedBackground';
@@ -94,7 +94,7 @@ const ConsistencyVisualization = () => {
   const activeIndex = Math.floor((frame / 30) % 4);
 
   return (
-    <div style={{ display: 'flex', gap: 28 }}>
+    <div style={{ display: 'flex', justifyContent: 'center', gap: 28 }}>
       {[0, 1, 2].map((col) => (
         <div
           key={col}
@@ -134,7 +134,7 @@ const AvailabilityVisualization = () => {
   const wave = (offset: number) => 0.6 + 0.4 * Math.sin((frame + offset) / 15);
 
   return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: 36 }}>
+    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 36 }}>
       {[0, 1].map((idx) => (
         <div
           key={idx}
@@ -202,7 +202,7 @@ const PartitionToleranceVisualization = () => {
   const blink = 0.5 + 0.5 * Math.abs(Math.sin(frame / 12));
 
   return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: 28 }}>
+    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 28 }}>
       {[colors.primary.purple, colors.primary.blue].map((accent, idx) => (
         <div
           key={idx}
@@ -267,23 +267,24 @@ const ExampleCard = ({
       style={{
         display: 'flex',
         flexDirection: 'column',
-        gap: 36,
-        padding: '70px 90px',
+        gap: 40,
+        padding: '60px 120px',
         background: `${colors.neutral.medium}DD`,
-        borderRadius: 30,
-        border: `4px solid ${color}`,
+        borderRadius: 40,
+        border: `6px solid ${color}`,
         transform: `scale(${spring({ frame: frame - delay, fps, from: 0, to: 1, config: { damping: 15 } })})`,
-        minWidth: 1100,
+        flex: 1,
+        minWidth: 900,
         maxWidth: 1100,
       }}
     >
-      <div style={{ ...fontPresets.heading, fontSize: 96, color }}>
+      <div style={{ ...fontPresets.heading, fontSize: 108, color, textAlign: 'center' }}>
         {title}
       </div>
-      <div style={{ ...fontPresets.heading, fontSize: 72, color: colors.accent.green }}>
+      <div style={{ ...fontPresets.heading, fontSize: 84, color: colors.accent.green, textAlign: 'center' }}>
         {picks}
       </div>
-      <div style={{ ...fontPresets.body, fontSize: 56, color: colors.neutral.white, opacity: 0.9 }}>
+      <div style={{ ...fontPresets.body, fontSize: 60, color: colors.neutral.white, opacity: 0.9, textAlign: 'center', lineHeight: 1.3 }}>
         {example}
       </div>
     </div>
@@ -373,6 +374,221 @@ const PartitionVisualizer = () => {
         }}
       >
         Network Partition
+      </div>
+    </div>
+  );
+};
+
+// Banking Application Animation
+const BankingAppAnimation = ({ delay = 0 }: { delay?: number }) => {
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+
+  const opacity = spring({
+    frame: frame - delay,
+    fps,
+    config: { damping: 100 },
+  });
+
+  const transactionProgress = interpolate(
+    (frame - delay) % 120,
+    [0, 60, 120],
+    [0, 1, 0],
+    { extrapolateRight: 'clamp' }
+  );
+
+  const balanceUpdate = interpolate(
+    (frame - delay) % 180,
+    [0, 90, 180],
+    [5000, 4750, 5000],
+    { extrapolateRight: 'clamp' }
+  );
+
+  return (
+    <div style={{ opacity, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 40 }}>
+      {/* Bank Interface */}
+      <div style={{
+        width: 400, height: 280, background: `${colors.neutral.medium}DD`,
+        borderRadius: 30, border: `4px solid ${colors.primary.blue}`,
+        padding: '30px', display: 'flex', flexDirection: 'column', gap: 20
+      }}>
+        {/* Header */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 15 }}>
+          <div style={{ width: 35, height: 35, background: colors.primary.blue, borderRadius: '50%' }} />
+          <div style={{ ...fontPresets.body, fontSize: 36, color: colors.neutral.white }}>SecureBank</div>
+        </div>
+        
+        {/* Balance */}
+        <div style={{ ...fontPresets.body, fontSize: 32, color: colors.neutral.white }}>
+          Balance: ${Math.round(balanceUpdate).toLocaleString()}
+        </div>
+        
+        {/* Transaction Progress */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+          <div style={{ ...fontPresets.body, fontSize: 26, color: colors.neutral.light }}>Transfer in progress...</div>
+          <div style={{ width: '100%', height: 8, background: `${colors.neutral.light}30`, borderRadius: 4 }}>
+            <div style={{ width: `${transactionProgress * 100}%`, height: '100%', background: colors.primary.blue, borderRadius: 4 }} />
+          </div>
+        </div>
+      </div>
+      
+      {/* Consistency Indicator */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
+        <div style={{ ...fontPresets.body, fontSize: 40, color: colors.primary.blue }}>🔒</div>
+        <div style={{ ...fontPresets.body, fontSize: 36, color: colors.neutral.white }}>Consistent Data</div>
+        <div style={{ 
+          width: 12, height: 12, borderRadius: '50%', 
+          background: colors.accent.green,
+          opacity: 0.5 + 0.5 * Math.sin((frame - delay) / 15)
+        }} />
+      </div>
+    </div>
+  );
+};
+
+// Social Media Animation
+const SocialMediaAnimation = ({ delay = 0 }: { delay?: number }) => {
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+
+  const opacity = spring({
+    frame: frame - delay,
+    fps,
+    config: { damping: 100 },
+  });
+
+  const postCount = Math.floor(((frame - delay) % 120) / 20) + 1;
+  const likeAnimation = interpolate(
+    (frame - delay) % 40,
+    [0, 20, 40],
+    [1, 1.2, 1],
+    { extrapolateRight: 'clamp' }
+  );
+
+  const posts = ['New post!', 'Check this out!', 'Amazing day!', 'Great news!', 'Hello world!', 'Nice shot!'];
+
+  return (
+    <div style={{ opacity, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 40 }}>
+      {/* Social Feed */}
+      <div style={{
+        width: 400, height: 280, background: `${colors.neutral.medium}DD`,
+        borderRadius: 30, border: `4px solid ${colors.accent.green}`,
+        padding: '25px', display: 'flex', flexDirection: 'column', gap: 12, overflow: 'hidden'
+      }}>
+        {/* Header */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 15 }}>
+          <div style={{ width: 35, height: 35, background: colors.accent.green, borderRadius: '50%' }} />
+          <div style={{ ...fontPresets.body, fontSize: 36, color: colors.neutral.white }}>SocialApp</div>
+        </div>
+        
+        {/* Posts */}
+        {posts.slice(0, Math.min(postCount, 3)).map((post, i) => (
+          <div key={i} style={{
+            padding: '8px 12px', background: `${colors.accent.green}20`,
+            borderRadius: 12, border: `1px solid ${colors.accent.green}60`
+          }}>
+            <div style={{ ...fontPresets.body, fontSize: 22, color: colors.neutral.white }}>{post}</div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginTop: 4 }}>
+              <div style={{ 
+                ...fontPresets.body, fontSize: 24, 
+                transform: `scale(${likeAnimation})`,
+                color: colors.accent.orange 
+              }}>❤️</div>
+              <div style={{ ...fontPresets.body, fontSize: 20, color: colors.neutral.light }}>
+                {Math.floor(Math.random() * 100) + 50}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+      
+      {/* Availability Indicator */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
+        <div style={{ ...fontPresets.body, fontSize: 40, color: colors.accent.green }}>⚡</div>
+        <div style={{ ...fontPresets.body, fontSize: 36, color: colors.neutral.white }}>Always Available</div>
+        <div style={{ 
+          width: 12, height: 12, borderRadius: '50%', 
+          background: colors.accent.green,
+          opacity: 0.8 + 0.2 * Math.sin((frame - delay) / 10)
+        }} />
+      </div>
+    </div>
+  );
+};
+
+// System Comparison Animation
+const SystemComparisonAnimation = ({ delay = 0 }: { delay?: number }) => {
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+
+  const opacity = spring({
+    frame: frame - delay,
+    fps,
+    config: { damping: 100 },
+  });
+
+  const leftSystemScale = spring({
+    frame: frame - delay,
+    fps,
+    from: 0,
+    to: 1,
+    config: { damping: 20 },
+  });
+
+  const rightSystemScale = spring({
+    frame: frame - delay - 60,
+    fps,
+    from: 0,
+    to: 1,
+    config: { damping: 20 },
+  });
+
+  const connectionPulse = 0.5 + 0.5 * Math.sin((frame - delay) / 20);
+
+  return (
+    <div style={{ opacity, display: 'flex', alignItems: 'center', gap: 120 }}>
+      {/* CP System Visualization */}
+      <div style={{ transform: `scale(${leftSystemScale})`, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 30 }}>
+        <div style={{ display: 'flex', gap: 20 }}>
+          <div style={{
+            width: 80, height: 80, borderRadius: '50%',
+            background: `${colors.primary.blue}30`, border: `3px solid ${colors.primary.blue}`,
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            ...fontPresets.heading, fontSize: 36, color: colors.primary.blue
+          }}>C</div>
+          <div style={{
+            width: 80, height: 80, borderRadius: '50%',
+            background: `${colors.primary.purple}30`, border: `3px solid ${colors.primary.purple}`,
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            ...fontPresets.heading, fontSize: 36, color: colors.primary.purple
+          }}>P</div>
+        </div>
+        <div style={{ ...fontPresets.body, fontSize: 48, color: colors.primary.blue }}>Strong Consistency</div>
+      </div>
+
+      {/* VS Separator with animation */}
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 20 }}>
+        <div style={{ ...fontPresets.heading, fontSize: 72, color: colors.accent.gold, opacity: connectionPulse }}>VS</div>
+        <div style={{ width: 4, height: 60, background: `linear-gradient(180deg, ${colors.primary.blue}, ${colors.accent.green})`, opacity: connectionPulse }} />
+      </div>
+
+      {/* AP System Visualization */}
+      <div style={{ transform: `scale(${rightSystemScale})`, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 30 }}>
+        <div style={{ display: 'flex', gap: 20 }}>
+          <div style={{
+            width: 80, height: 80, borderRadius: '50%',
+            background: `${colors.accent.green}30`, border: `3px solid ${colors.accent.green}`,
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            ...fontPresets.heading, fontSize: 36, color: colors.accent.green
+          }}>A</div>
+          <div style={{
+            width: 80, height: 80, borderRadius: '50%',
+            background: `${colors.primary.purple}30`, border: `3px solid ${colors.primary.purple}`,
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            ...fontPresets.heading, fontSize: 36, color: colors.primary.purple
+          }}>P</div>
+        </div>
+        <div style={{ ...fontPresets.body, fontSize: 48, color: colors.accent.green }}>High Availability</div>
       </div>
     </div>
   );
@@ -659,7 +875,7 @@ export const Scene3_CAPTheorem: React.FC = () => {
                 }),
               }}
             >
-              <div style={{ display: 'flex', gap: 40 }}>
+              <div style={{ display: 'flex', justifyContent: 'center', gap: 40 }}>
                 <div
                   style={{
                     width: 160,
@@ -733,7 +949,7 @@ export const Scene3_CAPTheorem: React.FC = () => {
                 }),
               }}
             >
-              <div style={{ display: 'flex', gap: 40 }}>
+              <div style={{ display: 'flex', justifyContent: 'center', gap: 40 }}>
                 <div
                   style={{
                     width: 160,
@@ -809,30 +1025,50 @@ export const Scene3_CAPTheorem: React.FC = () => {
           style={{
             display: 'flex',
             flexDirection: 'column',
-            padding: '160px 200px',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            padding: '120px 150px',
           }}
         >
           {/* Header - Always at top */}
-          <div style={{ marginBottom: 60 }}>
+          <div style={{ marginBottom: 60, textAlign: 'center' }}>
             <Title text="Real-World Examples" delay={0} size={150} />
           </div>
 
-          {/* Content - Uses remaining vertical space */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 120, justifyContent: 'center', flex: 1 }}>
-            <ExampleCard
-              title="CP System"
-              picks="Consistency + Partition Tolerance"
-              example="Banking (PostgreSQL, MongoDB) - Sacrifices availability during network partitions to ensure data consistency"
-              color={colors.primary.blue}
-              delay={40}
-            />
-            <ExampleCard
-              title="AP System"
-              picks="Availability + Partition Tolerance"
-              example="Social Media (Cassandra, DynamoDB) - Always available but data may be temporarily inconsistent"
-              color={colors.accent.green}
-              delay={100}
-            />
+          {/* Main content area with side animations */}
+          <div style={{ position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', flex: 1, width: '100%' }}>
+            {/* Left side animation */}
+            <div style={{ position: 'absolute', left: 0, top: '50%', transform: 'translateY(-50%)' }}>
+              <BankingAppAnimation delay={80} />
+            </div>
+            
+            {/* Right side animation */}
+            <div style={{ position: 'absolute', right: 0, top: '50%', transform: 'translateY(-50%)' }}>
+              <SocialMediaAnimation delay={140} />
+            </div>
+            
+            {/* Center cards */}
+            <div style={{ display: 'flex', gap: 50, justifyContent: 'center', alignItems: 'stretch', width: '100%', maxWidth: 2300 }}>
+              <ExampleCard
+                title="CP System"
+                picks="Consistency + Partition Tolerance"
+                example="Banking (PostgreSQL, MongoDB) - Sacrifices availability during network partitions to ensure data consistency"
+                color={colors.primary.blue}
+                delay={40}
+              />
+              <ExampleCard
+                title="AP System"
+                picks="Availability + Partition Tolerance"
+                example="Social Media (Cassandra, DynamoDB) - Always available but data may be temporarily inconsistent"
+                color={colors.accent.green}
+                delay={100}
+              />
+            </div>
+          </div>
+
+          {/* VS Animation at bottom */}
+          <div style={{ display: 'flex', justifyContent: 'center', marginTop: 60, marginBottom: 40 }}>
+            <SystemComparisonAnimation delay={150} />
           </div>
 
           {/* Bottom insight */}

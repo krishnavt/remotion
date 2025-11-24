@@ -72,7 +72,7 @@ const Layer = ({
       </div>
 
       {/* Examples */}
-      <div style={{ display: 'flex', gap: 30 }}>
+      <div style={{ display: 'flex', justifyContent: 'center', gap: 30 }}>
         {examples.map((example, i) => (
           <div
             key={i}

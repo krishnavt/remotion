@@ -218,7 +218,7 @@ export const Scene10_Outro: React.FC = () => {
         >
           <Title text="Key Takeaways" delay={0} />
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 40, marginTop: 20 }}>
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 40, marginTop: 20 }}>
             <TakeawayCard
               text="Design for scale, performance, and reliability"
               delay={30}
@@ -252,7 +252,7 @@ export const Scene10_Outro: React.FC = () => {
         >
           <ThankYou delay={0} />
 
-          <div style={{ display: 'flex', gap: 100, marginTop: 20 }}>
+          <div style={{ display: 'flex', justifyContent: 'center', gap: 100, marginTop: 20 }}>
             <CTAButton
               icon="👍"
               text="Like"

@@ -454,21 +454,21 @@ const PerformanceBar = ({ value, label, delay = 0, color }: { value: number; lab
   });
 
   return (
-    <div style={{ opacity, display: 'flex', alignItems: 'center', gap: 30, minWidth: 400 }}>
-      <div style={{ ...fontPresets.body, fontSize: 40, color: colors.neutral.white, minWidth: 180 }}>
+    <div style={{ opacity, display: 'flex', alignItems: 'center', gap: 80, minWidth: 800 }}>
+      <div style={{ ...fontPresets.body, fontSize: 84, color: colors.neutral.white, minWidth: 320 }}>
         {label}
       </div>
-      <div style={{ flex: 1, height: 8, background: `${colors.neutral.light}20`, borderRadius: 8, overflow: 'hidden' }}>
+      <div style={{ flex: 1, height: 24, background: `${colors.neutral.light}20`, borderRadius: 24, overflow: 'hidden' }}>
         <div
           style={{
             width: `${width}%`,
             height: '100%',
             background: color,
-            borderRadius: 8,
+            borderRadius: 24,
           }}
         />
       </div>
-      <div style={{ ...fontPresets.body, fontSize: 36, color, minWidth: 80 }}>
+      <div style={{ ...fontPresets.body, fontSize: 76, color, minWidth: 180 }}>
         {Math.round(width)}%
       </div>
     </div>
@@ -515,26 +515,26 @@ const ArchitectureLayer = ({
         opacity,
         display: 'flex',
         alignItems: 'center',
-        gap: compact ? 24 : 30,
+        gap: compact ? 80 : 100,
         background: `${colors.neutral.medium}DD`,
-        padding: compact ? '18px 40px' : '22px 45px',
-        borderRadius: 30,
-        border: `3px solid ${colors.primary.blue}`,
-        minWidth: compact ? 260 : 700,
-        flex: compact ? 1 : undefined,
-        width: compact ? '100%' : undefined,
-        maxWidth: compact ? 400 : undefined,
+        padding: compact ? '100px 80px' : '120px 100px',
+        borderRadius: 50,
+        border: `6px solid ${colors.primary.blue}`,
+        minWidth: compact ? 800 : 1600,
+        flex: compact ? 'none' : undefined,
+        width: compact ? 'auto' : undefined,
+        maxWidth: compact ? 1000 : undefined,
         ...style,
       }}
     >
-      <Icon size={compact ? 65 : 75} />
+      <Icon size={compact ? 180 : 220} />
       <div style={{ flex: 1 }}>
         <div
           style={{
             ...fontPresets.body,
-            fontSize: compact ? 32 : 36,
+            fontSize: compact ? 84 : 96,
             color: colors.neutral.white,
-            marginBottom: metrics ? 12 : 0,
+            marginBottom: metrics ? 24 : 0,
           }}
         >
           {label}
@@ -613,6 +613,7 @@ export const Scene2_BigPicture: React.FC = () => {
               style={{
                 display: 'flex',
                 alignItems: 'center',
+                justifyContent: 'center',
                 gap: 100,
               }}
             >
@@ -674,6 +675,7 @@ export const Scene2_BigPicture: React.FC = () => {
           <div
             style={{
               display: 'flex',
+              justifyContent: 'center',
               gap: 100,
             }}
           >
@@ -761,16 +763,17 @@ export const Scene2_BigPicture: React.FC = () => {
         >
           <Title text="At Scale" delay={0} size={160} />
 
-          {/* Architecture stack with metrics */}
+          {/* Architecture stack with metrics - 2x2 Grid */}
           <div
             style={{
-              display: 'flex',
-              gap: 48,
-              alignItems: 'stretch',
-              justifyContent: 'center',
-              flexWrap: 'nowrap',
+              display: 'grid',
+              gridTemplateColumns: '1fr 1fr',
+              gridTemplateRows: '1fr 1fr',
+              gap: 80,
               width: '100%',
-              maxWidth: 1400,
+              maxWidth: 2200,
+              justifyItems: 'center',
+              alignItems: 'center',
             }}
           >
             <ArchitectureLayer

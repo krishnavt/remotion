@@ -242,7 +242,7 @@ const SeeSaw = ({ tiltLeft = false, delay = 0 }: { tiltLeft?: boolean; delay?: n
         </g>
       </svg>
 
-      <div style={{ display: 'flex', gap: 200 }}>
+      <div style={{ display: 'flex', justifyContent: 'center', gap: 200 }}>
         <div style={{ ...fontPresets.heading, fontSize: 80, color: colors.accent.green }}>
           Throughput
         </div>
@@ -418,7 +418,7 @@ export const Scene4_ScalePerformance: React.FC = () => {
         >
           <Title text="What is Scale?" delay={0} />
 
-          <div style={{ display: 'flex', gap: 160 }}>
+          <div style={{ display: 'flex', justifyContent: 'center', gap: 160 }}>
             <AnimatedCounter
               targetNumber={1000000}
               suffix="+"
@@ -480,7 +480,7 @@ export const Scene4_ScalePerformance: React.FC = () => {
         >
           <Title text="Scale Metrics" delay={0} size={140} />
 
-          <div style={{ display: 'flex', gap: 100 }}>
+          <div style={{ display: 'flex', justifyContent: 'center', gap: 100 }}>
             <MetricCard
               icon={UsersIcon}
               title="Daily Active Users"
@@ -547,7 +547,7 @@ export const Scene4_ScalePerformance: React.FC = () => {
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: 120, alignItems: 'center' }}>
             {/* Throughput */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: 80 }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 80 }}>
               <CarIcon
                 size={240}
                 color={colors.accent.green}
@@ -564,7 +564,7 @@ export const Scene4_ScalePerformance: React.FC = () => {
             </div>
 
             {/* Latency */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: 80 }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 80 }}>
               <CarIcon
                 size={240}
                 color={colors.accent.orange}

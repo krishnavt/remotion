@@ -315,7 +315,7 @@ export const Scene7_CachingStrategies: React.FC = () => {
           }}
         >
           <Title text="Why Cache?" delay={0} />
-          <div style={{ display: 'flex', gap: 120, marginTop: 20 }}>
+          <div style={{ display: 'flex', justifyContent: 'center', gap: 120, marginTop: 20 }}>
             <div
               style={{
                 display: 'flex',
@@ -390,7 +390,7 @@ export const Scene7_CachingStrategies: React.FC = () => {
         >
           <Title text="Cache Layers" delay={0} />
 
-          <div style={{ display: 'flex', gap: 100, marginTop: 30 }}>
+          <div style={{ display: 'flex', justifyContent: 'center', gap: 100, marginTop: 30 }}>
             <CacheLayer
               label="CDN Cache"
               icon={CDNIcon}
