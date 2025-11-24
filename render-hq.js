@@ -21,18 +21,21 @@ const start = async () => {
     composition,
     serveUrl: bundleLocation,
     codec: 'h264',
-    outputLocation: `out/${compositionId.toLowerCase()}-hq.mp4`,
+    outputLocation: `out/${compositionId.toLowerCase()}-4k.mp4`,
     inputProps: {},
-    // High quality settings - use either CRF OR videoBitrate, not both
-    crf: 15,            // Lower = better quality (15 is very high quality)
+    // 4K High quality settings
+    crf: 12,            // Even higher quality for 4K (12 is extremely high quality)
     pixelFormat: 'yuv420p',
     imageFormat: 'png', // Best quality frames
-    jpegQuality: 100,   // Renamed from 'quality'
-    // YouTube optimized settings
-    x264Preset: 'slower', // Better compression
+    jpegQuality: 100,   
+    // 4K optimized settings
+    x264Preset: 'slower', // Better compression for 4K
     enforceAudioTrack: false,
     muted: true,
     verbose: true,
+    // Force 4K resolution override
+    overwrite: true,
+    scale: 1, // No scaling, use full 4K resolution
   });
 
   console.log('Render done!');

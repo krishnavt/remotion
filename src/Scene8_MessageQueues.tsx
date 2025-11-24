@@ -46,42 +46,42 @@ const QueueFlow = ({ delay = 0 }: { delay?: number }) => {
   });
 
   return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: 60 }}>
+    <div style={{ display: 'flex', alignItems: 'center', gap: 120 }}>
       {/* Producer */}
       <div
         style={{
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          gap: 12,
+          gap: 24,
           transform: `scale(${producerScale})`,
         }}
       >
         <div
           style={{
-            width: 150,
-            height: 150,
+            width: 300,
+            height: 300,
             background: `${colors.primary.blue}30`,
             border: `3px solid ${colors.primary.blue}`,
-            borderRadius: 12,
+            borderRadius: 24,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            fontSize: 60,
+            fontSize: 120,
           }}
         >
           📤
         </div>
-        <div style={{ ...fontPresets.heading, fontSize: 32, color: colors.primary.blue }}>
+        <div style={{ ...fontPresets.heading, fontSize: 64, color: colors.primary.blue }}>
           Producer
         </div>
-        <div style={{ ...fontPresets.body, fontSize: 20, color: colors.neutral.white, opacity: 0.8 }}>
+        <div style={{ ...fontPresets.body, fontSize: 40, color: colors.neutral.white, opacity: 0.8 }}>
           Sends Message
         </div>
       </div>
 
       {/* Arrow 1 */}
-      <div style={{ fontSize: 50, color: colors.accent.green, opacity: arrowOpacity1 }}>→</div>
+      <div style={{ fontSize: 100, color: colors.accent.green, opacity: arrowOpacity1 }}>→</div>
 
       {/* Queue */}
       <div
@@ -89,51 +89,51 @@ const QueueFlow = ({ delay = 0 }: { delay?: number }) => {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          gap: 12,
+          gap: 24,
           transform: `scale(${queueScale})`,
         }}
       >
         <div
           style={{
-            width: 200,
-            height: 150,
+            width: 400,
+            height: 300,
             background: `${colors.accent.green}30`,
             border: `3px solid ${colors.accent.green}`,
-            borderRadius: 12,
+            borderRadius: 24,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
-            gap: 8,
+            gap: 16,
             padding: 15,
           }}
         >
-          <div style={{ fontSize: 50 }}>📬</div>
-          <div style={{ display: 'flex', gap: 8 }}>
+          <div style={{ fontSize: 100 }}>📬</div>
+          <div style={{ display: 'flex', gap: 16 }}>
             {[1, 2, 3].map((i) => (
               <div
                 key={i}
                 style={{
-                  width: 40,
-                  height: 40,
+                  width: 80,
+                  height: 80,
                   background: colors.accent.green,
-                  borderRadius: 6,
+                  borderRadius: 12,
                   opacity: 0.6,
                 }}
               />
             ))}
           </div>
         </div>
-        <div style={{ ...fontPresets.heading, fontSize: 32, color: colors.accent.green }}>
+        <div style={{ ...fontPresets.heading, fontSize: 64, color: colors.accent.green }}>
           Queue
         </div>
-        <div style={{ ...fontPresets.body, fontSize: 20, color: colors.neutral.white, opacity: 0.8 }}>
+        <div style={{ ...fontPresets.body, fontSize: 40, color: colors.neutral.white, opacity: 0.8 }}>
           Stores Messages
         </div>
       </div>
 
       {/* Arrow 2 */}
-      <div style={{ fontSize: 50, color: colors.accent.green, opacity: arrowOpacity2 }}>→</div>
+      <div style={{ fontSize: 100, color: colors.accent.green, opacity: arrowOpacity2 }}>→</div>
 
       {/* Consumer */}
       <div
@@ -141,29 +141,29 @@ const QueueFlow = ({ delay = 0 }: { delay?: number }) => {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          gap: 12,
+          gap: 24,
           transform: `scale(${consumerScale})`,
         }}
       >
         <div
           style={{
-            width: 150,
-            height: 150,
+            width: 300,
+            height: 300,
             background: `${colors.primary.purple}30`,
             border: `3px solid ${colors.primary.purple}`,
-            borderRadius: 12,
+            borderRadius: 24,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            fontSize: 60,
+            fontSize: 120,
           }}
         >
           ⚙️
         </div>
-        <div style={{ ...fontPresets.heading, fontSize: 32, color: colors.primary.purple }}>
+        <div style={{ ...fontPresets.heading, fontSize: 64, color: colors.primary.purple }}>
           Consumer
         </div>
-        <div style={{ ...fontPresets.body, fontSize: 20, color: colors.neutral.white, opacity: 0.8 }}>
+        <div style={{ ...fontPresets.body, fontSize: 40, color: colors.neutral.white, opacity: 0.8 }}>
           Processes Message
         </div>
       </div>
@@ -202,21 +202,21 @@ const UseCaseCard = ({
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        gap: 15,
+        gap: 30,
         padding: '30px',
         background: `${colors.neutral.medium}DD`,
-        borderRadius: 15,
+        borderRadius: 30,
         border: `3px solid ${color}`,
         transform: `scale(${scale})`,
-        maxWidth: 320,
-        minHeight: 240,
+        maxWidth: 640,
+        minHeight: 480,
       }}
     >
-      <div style={{ fontSize: 70 }}>{icon}</div>
-      <div style={{ ...fontPresets.heading, fontSize: 34, color, textAlign: 'center' }}>
+      <div style={{ fontSize: 140 }}>{icon}</div>
+      <div style={{ ...fontPresets.heading, fontSize: 68, color, textAlign: 'center' }}>
         {title}
       </div>
-      <div style={{ ...fontPresets.body, fontSize: 22, color: colors.neutral.white, opacity: 0.9, textAlign: 'center' }}>
+      <div style={{ ...fontPresets.body, fontSize: 44, color: colors.neutral.white, opacity: 0.9, textAlign: 'center' }}>
         {description}
       </div>
     </div>
@@ -229,48 +229,48 @@ const SyncVsAsync = ({ delay = 0 }: { delay?: number }) => {
   const { fps } = useVideoConfig();
 
   return (
-    <div style={{ display: 'flex', gap: 80, opacity: spring({ frame: frame - delay, fps, config: { damping: 100 } }) }}>
+    <div style={{ display: 'flex', gap: 160, opacity: spring({ frame: frame - delay, fps, config: { damping: 100 } }) }}>
       {/* Synchronous - Slow */}
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 20 }}>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 40 }}>
         <div
           style={{
-            padding: '25px 40px',
+            padding: '50px 80px',
             background: `${colors.accent.orange}30`,
             border: `3px solid ${colors.accent.orange}`,
-            borderRadius: 12,
+            borderRadius: 24,
             transform: `scale(${spring({ frame: frame - delay - 20, fps, from: 0, to: 1, config: { damping: 15 } })})`,
           }}
         >
-          <div style={{ ...fontPresets.heading, fontSize: 38, color: colors.accent.orange, textAlign: 'center' }}>
+          <div style={{ ...fontPresets.heading, fontSize: 76, color: colors.accent.orange, textAlign: 'center' }}>
             Synchronous
           </div>
-          <div style={{ ...fontPresets.body, fontSize: 24, color: colors.neutral.white, marginTop: 15, textAlign: 'center' }}>
+          <div style={{ ...fontPresets.body, fontSize: 48, color: colors.neutral.white, marginTop: 15, textAlign: 'center' }}>
             Request → Wait → Response
           </div>
-          <div style={{ ...fontPresets.body, fontSize: 28, color: colors.accent.orange, marginTop: 20, textAlign: 'center' }}>
+          <div style={{ ...fontPresets.body, fontSize: 56, color: colors.accent.orange, marginTop: 20, textAlign: 'center' }}>
             ⏱️ User waits
           </div>
         </div>
       </div>
 
       {/* Asynchronous - Fast */}
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 20 }}>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 40 }}>
         <div
           style={{
-            padding: '25px 40px',
+            padding: '50px 80px',
             background: `${colors.accent.green}30`,
             border: `3px solid ${colors.accent.green}`,
-            borderRadius: 12,
+            borderRadius: 24,
             transform: `scale(${spring({ frame: frame - delay - 40, fps, from: 0, to: 1, config: { damping: 15 } })})`,
           }}
         >
-          <div style={{ ...fontPresets.heading, fontSize: 38, color: colors.accent.green, textAlign: 'center' }}>
+          <div style={{ ...fontPresets.heading, fontSize: 76, color: colors.accent.green, textAlign: 'center' }}>
             Asynchronous
           </div>
-          <div style={{ ...fontPresets.body, fontSize: 24, color: colors.neutral.white, marginTop: 15, textAlign: 'center' }}>
+          <div style={{ ...fontPresets.body, fontSize: 48, color: colors.neutral.white, marginTop: 15, textAlign: 'center' }}>
             Request → Queue → Continue
           </div>
-          <div style={{ ...fontPresets.body, fontSize: 28, color: colors.accent.green, marginTop: 20, textAlign: 'center' }}>
+          <div style={{ ...fontPresets.body, fontSize: 56, color: colors.accent.green, marginTop: 20, textAlign: 'center' }}>
             ✓ Instant response
           </div>
         </div>
@@ -287,7 +287,7 @@ const Title = ({ text, delay = 0 }: { text: string; delay?: number }) => {
     <div
       style={{
         ...fontPresets.heading,
-        fontSize: 70,
+        fontSize: 140,
         background: createGradient(colors.primary.purple, colors.accent.green),
         WebkitBackgroundClip: 'text',
         WebkitTextFillColor: 'transparent',
@@ -320,8 +320,8 @@ export const Scene8_MessageQueues: React.FC = () => {
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
-            gap: 60,
-            padding: '80px 60px',
+            gap: 120,
+            padding: '160px 120px',
           }}
         >
           <Title text="Asynchronous Processing" delay={0} />
@@ -342,8 +342,8 @@ export const Scene8_MessageQueues: React.FC = () => {
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
-            gap: 60,
-            padding: '80px 60px',
+            gap: 120,
+            padding: '160px 120px',
           }}
         >
           <FadeTransition startFrame={750} duration={30} type="in" />
@@ -364,14 +364,14 @@ export const Scene8_MessageQueues: React.FC = () => {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            padding: '80px 60px',
-            gap: 50,
+            padding: '160px 120px',
+            gap: 100,
           }}
         >
           <FadeTransition startFrame={1650} duration={30} type="in" />
           <Title text="Common Use Cases" delay={0} />
 
-          <div style={{ display: 'flex', gap: 40, marginTop: 30, justifyContent: 'center' }}>
+          <div style={{ display: 'flex', gap: 80, marginTop: 30, justifyContent: 'center' }}>
             <UseCaseCard
               icon="✉️"
               title="Email Sending"

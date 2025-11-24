@@ -43,30 +43,30 @@ const CacheLayer = ({
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        gap: 15,
-        maxWidth: 350,
+        gap: 30,
+        maxWidth: 700,
         transform: position === 'center' ? `scale(${spring({ frame: frame - delay, fps, from: 0, to: 1, config: { damping: 15 } })})` : `translateX(${slideIn}px)`,
         opacity,
       }}
     >
       <div
         style={{
-          width: 280,
+          width: 560,
           padding: '25px',
           background: `${colors.neutral.medium}DD`,
-          borderRadius: 15,
+          borderRadius: 30,
           border: `3px solid ${color}`,
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          gap: 15,
+          gap: 30,
         }}
       >
-        <Icon size={65} color={color} />
-        <div style={{ ...fontPresets.heading, fontSize: 34, color, textAlign: 'center' }}>
+        <Icon size={130} color={color} />
+        <div style={{ ...fontPresets.heading, fontSize: 68, color, textAlign: 'center' }}>
           {label}
         </div>
-        <div style={{ ...fontPresets.body, fontSize: 20, color: colors.neutral.white, opacity: 0.9, textAlign: 'center' }}>
+        <div style={{ ...fontPresets.body, fontSize: 40, color: colors.neutral.white, opacity: 0.9, textAlign: 'center' }}>
           {description}
         </div>
       </div>
@@ -104,28 +104,28 @@ const StrategyCard = ({
       style={{
         display: 'flex',
         flexDirection: 'column',
-        gap: 15,
-        padding: '25px 30px',
+        gap: 30,
+        padding: '50px 60px',
         background: `${colors.neutral.medium}DD`,
-        borderRadius: 15,
+        borderRadius: 30,
         border: `3px solid ${color}`,
         transform: `scale(${scale})`,
-        maxWidth: 480,
+        maxWidth: 960,
       }}
     >
-      <div style={{ ...fontPresets.heading, fontSize: 38, color }}>
+      <div style={{ ...fontPresets.heading, fontSize: 76, color }}>
         {strategy}
       </div>
-      <div style={{ ...fontPresets.body, fontSize: 22, color: colors.neutral.white, opacity: 0.9 }}>
+      <div style={{ ...fontPresets.body, fontSize: 44, color: colors.neutral.white, opacity: 0.9 }}>
         {description}
       </div>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginTop: 5 }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 16, marginTop: 5 }}>
         {steps.map((step, i) => (
           <div
             key={i}
             style={{
               ...fontPresets.body,
-              fontSize: 19,
+              fontSize: 38,
               color: colors.neutral.white,
               opacity: spring({
                 frame: frame - delay - 20 - i * 8,
@@ -152,61 +152,61 @@ const CacheVisualization = ({ delay = 0 }: { delay?: number }) => {
     <div
       style={{
         display: 'flex',
-        gap: 80,
+        gap: 160,
         alignItems: 'center',
         opacity: spring({ frame: frame - delay, fps, config: { damping: 100 } }),
       }}
     >
       {/* Cache Hit - Fast */}
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 15 }}>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 30 }}>
         <div
           style={{
-            width: 200,
-            height: 160,
+            width: 400,
+            height: 320,
             background: `${colors.accent.green}30`,
             border: `3px solid ${colors.accent.green}`,
-            borderRadius: 12,
+            borderRadius: 24,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
-            gap: 10,
+            gap: 20,
             transform: `scale(${spring({ frame: frame - delay - 20, fps, from: 0, to: 1, config: { damping: 15 } })})`,
           }}
         >
-          <div style={{ fontSize: 70, color: colors.accent.green }}>✓</div>
-          <div style={{ ...fontPresets.heading, fontSize: 32, color: colors.accent.green }}>
+          <div style={{ fontSize: 140, color: colors.accent.green }}>✓</div>
+          <div style={{ ...fontPresets.heading, fontSize: 64, color: colors.accent.green }}>
             Cache Hit
           </div>
         </div>
-        <div style={{ ...fontPresets.body, fontSize: 26, color: colors.neutral.white }}>
+        <div style={{ ...fontPresets.body, fontSize: 52, color: colors.neutral.white }}>
           ~1ms
         </div>
       </div>
 
       {/* Cache Miss - Slow */}
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 15 }}>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 30 }}>
         <div
           style={{
-            width: 200,
-            height: 160,
+            width: 400,
+            height: 320,
             background: `${colors.accent.orange}30`,
             border: `3px solid ${colors.accent.orange}`,
-            borderRadius: 12,
+            borderRadius: 24,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
-            gap: 10,
+            gap: 20,
             transform: `scale(${spring({ frame: frame - delay - 40, fps, from: 0, to: 1, config: { damping: 15 } })})`,
           }}
         >
-          <div style={{ fontSize: 70, color: colors.accent.orange }}>✗</div>
-          <div style={{ ...fontPresets.heading, fontSize: 32, color: colors.accent.orange }}>
+          <div style={{ fontSize: 140, color: colors.accent.orange }}>✗</div>
+          <div style={{ ...fontPresets.heading, fontSize: 64, color: colors.accent.orange }}>
             Cache Miss
           </div>
         </div>
-        <div style={{ ...fontPresets.body, fontSize: 26, color: colors.neutral.white }}>
+        <div style={{ ...fontPresets.body, fontSize: 52, color: colors.neutral.white }}>
           ~100ms
         </div>
       </div>
@@ -251,7 +251,7 @@ const Title = ({ text, delay = 0 }: { text: string; delay?: number }) => {
     <div
       style={{
         ...fontPresets.heading,
-        fontSize: 70,
+        fontSize: 140,
         background: createGradient(colors.primary.blue, colors.accent.green),
         WebkitBackgroundClip: 'text',
         WebkitTextFillColor: 'transparent',
@@ -284,12 +284,12 @@ export const Scene7_CachingStrategies: React.FC = () => {
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
-            gap: 60,
-            padding: '80px 60px',
+            gap: 120,
+            padding: '160px 120px',
           }}
         >
           <Title text="Caching" delay={0} />
-          <div style={{ ...fontPresets.body, fontSize: 36, color: colors.neutral.white, textAlign: 'center', maxWidth: 900, opacity: 0.9 }}>
+          <div style={{ ...fontPresets.body, fontSize: 72, color: colors.neutral.white, textAlign: 'center', maxWidth: 900, opacity: 0.9 }}>
             Store frequently accessed data in fast storage to reduce latency and database load
           </div>
           <CacheVisualization delay={60} />
@@ -310,62 +310,62 @@ export const Scene7_CachingStrategies: React.FC = () => {
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
-            gap: 50,
-            padding: '80px 60px',
+            gap: 100,
+            padding: '160px 120px',
           }}
         >
           <Title text="Why Cache?" delay={0} />
-          <div style={{ display: 'flex', gap: 60, marginTop: 20 }}>
+          <div style={{ display: 'flex', gap: 120, marginTop: 20 }}>
             <div
               style={{
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
-                gap: 15,
-                padding: '30px 40px',
+                gap: 30,
+                padding: '60px 80px',
                 background: `${colors.accent.green}20`,
                 border: `3px solid ${colors.accent.green}`,
-                borderRadius: 15,
+                borderRadius: 30,
                 transform: `scale(${spring({ frame: useCurrentFrame() - 30, fps: 30, from: 0, to: 1, config: { damping: 15 } })})`,
               }}
             >
-              <div style={{ fontSize: 60 }}>⚡</div>
-              <div style={{ ...fontPresets.heading, fontSize: 38, color: colors.accent.green }}>Faster</div>
-              <div style={{ ...fontPresets.body, fontSize: 26, color: colors.neutral.white, opacity: 0.9 }}>100x speed boost</div>
+              <div style={{ fontSize: 120 }}>⚡</div>
+              <div style={{ ...fontPresets.heading, fontSize: 76, color: colors.accent.green }}>Faster</div>
+              <div style={{ ...fontPresets.body, fontSize: 52, color: colors.neutral.white, opacity: 0.9 }}>100x speed boost</div>
             </div>
             <div
               style={{
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
-                gap: 15,
-                padding: '30px 40px',
+                gap: 30,
+                padding: '60px 80px',
                 background: `${colors.primary.blue}20`,
                 border: `3px solid ${colors.primary.blue}`,
-                borderRadius: 15,
+                borderRadius: 30,
                 transform: `scale(${spring({ frame: useCurrentFrame() - 60, fps: 30, from: 0, to: 1, config: { damping: 15 } })})`,
               }}
             >
-              <div style={{ fontSize: 60 }}>💰</div>
-              <div style={{ ...fontPresets.heading, fontSize: 38, color: colors.primary.blue }}>Cheaper</div>
-              <div style={{ ...fontPresets.body, fontSize: 26, color: colors.neutral.white, opacity: 0.9 }}>Reduce DB load</div>
+              <div style={{ fontSize: 120 }}>💰</div>
+              <div style={{ ...fontPresets.heading, fontSize: 76, color: colors.primary.blue }}>Cheaper</div>
+              <div style={{ ...fontPresets.body, fontSize: 52, color: colors.neutral.white, opacity: 0.9 }}>Reduce DB load</div>
             </div>
             <div
               style={{
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
-                gap: 15,
-                padding: '30px 40px',
+                gap: 30,
+                padding: '60px 80px',
                 background: `${colors.primary.purple}20`,
                 border: `3px solid ${colors.primary.purple}`,
-                borderRadius: 15,
+                borderRadius: 30,
                 transform: `scale(${spring({ frame: useCurrentFrame() - 90, fps: 30, from: 0, to: 1, config: { damping: 15 } })})`,
               }}
             >
-              <div style={{ fontSize: 60 }}>😊</div>
-              <div style={{ ...fontPresets.heading, fontSize: 38, color: colors.primary.purple }}>Better UX</div>
-              <div style={{ ...fontPresets.body, fontSize: 26, color: colors.neutral.white, opacity: 0.9 }}>Instant responses</div>
+              <div style={{ fontSize: 120 }}>😊</div>
+              <div style={{ ...fontPresets.heading, fontSize: 76, color: colors.primary.purple }}>Better UX</div>
+              <div style={{ ...fontPresets.body, fontSize: 52, color: colors.neutral.white, opacity: 0.9 }}>Instant responses</div>
             </div>
           </div>
         </AbsoluteFill>
@@ -384,13 +384,13 @@ export const Scene7_CachingStrategies: React.FC = () => {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            padding: '80px 60px',
-            gap: 50,
+            padding: '160px 120px',
+            gap: 100,
           }}
         >
           <Title text="Cache Layers" delay={0} />
 
-          <div style={{ display: 'flex', gap: 50, marginTop: 30 }}>
+          <div style={{ display: 'flex', gap: 100, marginTop: 30 }}>
             <CacheLayer
               label="CDN Cache"
               icon={CDNIcon}
@@ -432,13 +432,13 @@ export const Scene7_CachingStrategies: React.FC = () => {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            padding: '80px 60px',
-            gap: 45,
+            padding: '160px 120px',
+            gap: 90,
           }}
         >
           <Title text="Cache Strategies" delay={0} />
 
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 40, justifyContent: 'center', marginTop: 20 }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 80, justifyContent: 'center', marginTop: 20 }}>
             <StrategyCard
               strategy="Cache Aside"
               description="Read from cache, if miss read from DB"

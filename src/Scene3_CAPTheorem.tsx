@@ -37,21 +37,21 @@ const CAPProperty = ({
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        gap: 18,
-        padding: '28px 32px',
+        gap: 36,
+        padding: '56px 64px',
         background: `${colors.neutral.medium}DD`,
-        borderRadius: 15,
+        borderRadius: 30,
         border: `4px solid ${color}`,
         transform: `scale(${scale})`,
-        minWidth: 340,
-        maxWidth: 340,
+        minWidth: 680,
+        maxWidth: 680,
         flex: '1 1 0',
       }}
     >
       <div
         style={{
-          width: 110,
-          height: 110,
+          width: 220,
+          height: 220,
           borderRadius: '50%',
           background: `${color}30`,
           border: `4px solid ${color}`,
@@ -59,7 +59,7 @@ const CAPProperty = ({
           alignItems: 'center',
           justifyContent: 'center',
           ...fontPresets.heading,
-          fontSize: 65,
+          fontSize: 130,
           color,
         }}
       >
@@ -69,7 +69,7 @@ const CAPProperty = ({
         <div
           style={{
             width: '100%',
-            height: 100,
+            height: 200,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -78,10 +78,10 @@ const CAPProperty = ({
           <Visual />
         </div>
       )}
-      <div style={{ ...fontPresets.heading, fontSize: 42, color }}>
+      <div style={{ ...fontPresets.heading, fontSize: 84, color }}>
         {name}
       </div>
-      <div style={{ ...fontPresets.body, fontSize: 26, color: colors.neutral.white, textAlign: 'center', opacity: 0.9 }}>
+      <div style={{ ...fontPresets.body, fontSize: 52, color: colors.neutral.white, textAlign: 'center', opacity: 0.9 }}>
         {description}
       </div>
     </div>
@@ -94,20 +94,20 @@ const ConsistencyVisualization = () => {
   const activeIndex = Math.floor((frame / 30) % 4);
 
   return (
-    <div style={{ display: 'flex', gap: 14 }}>
+    <div style={{ display: 'flex', gap: 28 }}>
       {[0, 1, 2].map((col) => (
         <div
           key={col}
           style={{
-            width: 80,
-            height: 90,
-            borderRadius: 18,
+            width: 160,
+            height: 180,
+            borderRadius: 36,
             border: `2px solid ${colors.primary.blue}`,
             background: `${colors.primary.blue}15`,
             padding: 8,
             display: 'flex',
             flexDirection: 'column',
-            gap: 6,
+            gap: 12,
             boxShadow: col === activeIndex ? `0 0 25px ${colors.primary.blue}60` : undefined,
           }}
         >
@@ -116,7 +116,7 @@ const ConsistencyVisualization = () => {
               key={row}
               style={{
                 height: 10,
-                borderRadius: 6,
+                borderRadius: 12,
                 background: col === activeIndex ? `${colors.primary.blue}` : `${colors.primary.blue}40`,
                 opacity: row === (frame / 10 + col) % 4 ? pulse : 0.4,
                 transition: 'opacity 0.2s',
@@ -134,14 +134,14 @@ const AvailabilityVisualization = () => {
   const wave = (offset: number) => 0.6 + 0.4 * Math.sin((frame + offset) / 15);
 
   return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: 18 }}>
+    <div style={{ display: 'flex', alignItems: 'center', gap: 36 }}>
       {[0, 1].map((idx) => (
         <div
           key={idx}
           style={{
-            width: 70,
-            height: 90,
-            borderRadius: 16,
+            width: 140,
+            height: 180,
+            borderRadius: 32,
             border: `2px solid ${colors.accent.green}`,
             background: `${colors.accent.green}10`,
             position: 'relative',
@@ -152,7 +152,7 @@ const AvailabilityVisualization = () => {
             style={{
               position: 'absolute',
               inset: 10,
-              borderRadius: 10,
+              borderRadius: 20,
               border: `1px dashed ${colors.accent.green}60`,
             }}
           />
@@ -162,8 +162,8 @@ const AvailabilityVisualization = () => {
               bottom: 12,
               left: '50%',
               transform: `translateX(-50%) scale(${wave(idx * 20)})`,
-              width: 42,
-              height: 42,
+              width: 84,
+              height: 84,
               borderRadius: '50%',
               background: `${colors.accent.green}30`,
               border: `2px solid ${colors.accent.green}`,
@@ -174,8 +174,8 @@ const AvailabilityVisualization = () => {
           >
             <div
               style={{
-                width: 18,
-                height: 18,
+                width: 36,
+                height: 36,
                 borderBottom: `3px solid ${colors.accent.green}`,
                 borderRight: `3px solid ${colors.accent.green}`,
                 transform: 'rotate(45deg)',
@@ -186,11 +186,11 @@ const AvailabilityVisualization = () => {
       ))}
       <div
         style={{
-          width: 50,
+          width: 100,
           height: 4,
           background: `${colors.accent.green}`,
           opacity: 0.3 + 0.7 * Math.abs(Math.sin(frame / 25)),
-          borderRadius: 4,
+          borderRadius: 8,
         }}
       />
     </div>
@@ -202,19 +202,19 @@ const PartitionToleranceVisualization = () => {
   const blink = 0.5 + 0.5 * Math.abs(Math.sin(frame / 12));
 
   return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
+    <div style={{ display: 'flex', alignItems: 'center', gap: 28 }}>
       {[colors.primary.purple, colors.primary.blue].map((accent, idx) => (
         <div
           key={idx}
           style={{
-            width: 90,
-            height: 60,
-            borderRadius: 16,
+            width: 180,
+            height: 120,
+            borderRadius: 32,
             border: `2px solid ${accent}`,
             background: `${accent}18`,
             display: 'grid',
             gridTemplateColumns: 'repeat(3, 1fr)',
-            gap: 6,
+            gap: 12,
             padding: 8,
           }}
         >
@@ -234,7 +234,7 @@ const PartitionToleranceVisualization = () => {
       ))}
       <div
         style={{
-          width: 40,
+          width: 80,
           height: 3,
           background: `linear-gradient(90deg, ${colors.primary.blue}, ${colors.primary.purple})`,
           opacity: blink,
@@ -267,23 +267,23 @@ const ExampleCard = ({
       style={{
         display: 'flex',
         flexDirection: 'column',
-        gap: 18,
-        padding: '35px 45px',
+        gap: 36,
+        padding: '70px 90px',
         background: `${colors.neutral.medium}DD`,
-        borderRadius: 15,
+        borderRadius: 30,
         border: `4px solid ${color}`,
         transform: `scale(${spring({ frame: frame - delay, fps, from: 0, to: 1, config: { damping: 15 } })})`,
-        minWidth: 550,
-        maxWidth: 550,
+        minWidth: 1100,
+        maxWidth: 1100,
       }}
     >
-      <div style={{ ...fontPresets.heading, fontSize: 48, color }}>
+      <div style={{ ...fontPresets.heading, fontSize: 96, color }}>
         {title}
       </div>
-      <div style={{ ...fontPresets.heading, fontSize: 36, color: colors.accent.green }}>
+      <div style={{ ...fontPresets.heading, fontSize: 72, color: colors.accent.green }}>
         {picks}
       </div>
-      <div style={{ ...fontPresets.body, fontSize: 28, color: colors.neutral.white, opacity: 0.9 }}>
+      <div style={{ ...fontPresets.body, fontSize: 56, color: colors.neutral.white, opacity: 0.9 }}>
         {example}
       </div>
     </div>
@@ -306,8 +306,8 @@ const PartitionVisualizer = () => {
         <div
           key={i}
           style={{
-            width: 16,
-            height: 16,
+            width: 32,
+            height: 32,
             borderRadius: '50%',
             background: accent,
             opacity: 0.9,
@@ -322,9 +322,9 @@ const PartitionVisualizer = () => {
       style={{
         display: 'flex',
         alignItems: 'center',
-        gap: 30,
-        padding: '30px 40px',
-        borderRadius: 30,
+        gap: 60,
+        padding: '60px 80px',
+        borderRadius: 60,
         background: `${colors.neutral.medium}80`,
         border: `1px solid ${colors.neutral.light}30`,
         boxShadow: '0 25px 60px rgba(0,0,0,0.35)',
@@ -334,27 +334,27 @@ const PartitionVisualizer = () => {
         <div
           key={cluster.label}
           style={{
-            width: 180,
-            height: 120,
-            borderRadius: 24,
+            width: 360,
+            height: 240,
+            borderRadius: 48,
             border: `2px solid ${cluster.accent}`,
             background: `${cluster.accent}15`,
             padding: 18,
             display: 'flex',
             flexWrap: 'wrap',
-            gap: 10,
+            gap: 20,
             justifyContent: 'center',
           }}
         >
           {renderNodes(cluster.accent)}
-          <div style={{ width: '100%', textAlign: 'center', ...fontPresets.body, fontSize: 18, color: colors.neutral.white, marginTop: 6 }}>
+          <div style={{ width: '100%', textAlign: 'center', ...fontPresets.body, fontSize: 36, color: colors.neutral.white, marginTop: 6 }}>
             {cluster.label}
           </div>
         </div>
       ))}
       <div
         style={{
-          width: 130,
+          width: 260,
           height: 4,
           background: `linear-gradient(90deg, ${colors.primary.blue}, ${colors.primary.purple})`,
           opacity: connectionOpacity,
@@ -364,11 +364,11 @@ const PartitionVisualizer = () => {
       <div
         style={{
           border: '2px dashed rgba(255,255,255,0.5)',
-          borderRadius: 20,
-          padding: '10px 18px',
+          borderRadius: 40,
+          padding: '20px 36px',
           color: colors.neutral.white,
           ...fontPresets.body,
-          fontSize: 18,
+          fontSize: 36,
           opacity: 0.8,
         }}
       >
@@ -405,14 +405,14 @@ const TradeoffDial = () => {
     <div
       style={{
         padding: 30,
-        borderRadius: 40,
+        borderRadius: 80,
         background: `${colors.neutral.medium}AA`,
         border: `1px solid ${colors.neutral.light}30`,
         boxShadow: '0 25px 60px rgba(0,0,0,0.4)',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        gap: 16,
+        gap: 32,
       }}
     >
       <svg width="300" height="300" viewBox="0 0 300 300">
@@ -457,11 +457,11 @@ const TradeoffDial = () => {
           );
         })}
       </svg>
-      <div style={{ ...fontPresets.body, fontSize: 24, color: colors.neutral.white, textAlign: 'center' }}>{activeLabel}</div>
+      <div style={{ ...fontPresets.body, fontSize: 48, color: colors.neutral.white, textAlign: 'center' }}>{activeLabel}</div>
       <div
         style={{
           ...fontPresets.body,
-          fontSize: 18,
+          fontSize: 36,
           color: colors.neutral.light,
           textAlign: 'center',
           opacity: 0.9,
@@ -515,12 +515,12 @@ export const Scene3_CAPTheorem: React.FC = () => {
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
-            gap: 50,
-            padding: '100px 80px',
+            gap: 100,
+            padding: '200px 160px',
           }}
         >
-          <Title text="CAP Theorem" delay={0} size={90} />
-          <div style={{ ...fontPresets.body, fontSize: 38, color: colors.neutral.white, textAlign: 'center', maxWidth: 900, opacity: 0.9 }}>
+          <Title text="CAP Theorem" delay={0} size={180} />
+          <div style={{ ...fontPresets.body, fontSize: 76, color: colors.neutral.white, textAlign: 'center', maxWidth: 900, opacity: 0.9 }}>
             In distributed systems, you can only guarantee 2 out of 3 properties
           </div>
         </AbsoluteFill>
@@ -539,26 +539,26 @@ export const Scene3_CAPTheorem: React.FC = () => {
           style={{
             display: 'flex',
             flexDirection: 'column',
-            padding: '80px 100px',
+            padding: '160px 200px',
           }}
         >
           {/* Header - Always at top */}
           <div style={{ marginBottom: 60 }}>
-            <Title text="The 3 Properties" delay={0} size={75} />
+            <Title text="The 3 Properties" delay={0} size={150} />
           </div>
 
           {/* Content - Uses remaining vertical space */}
           <div
             style={{
               display: 'flex',
-              gap: 24,
+              gap: 48,
               justifyContent: 'center',
               alignItems: 'stretch',
               flex: 1,
               flexWrap: 'nowrap',
             }}
           >
-            <div style={{ display: 'flex', gap: 24, justifyContent: 'center', alignItems: 'stretch', flex: 1, flexWrap: 'nowrap' }}>
+            <div style={{ display: 'flex', gap: 48, justifyContent: 'center', alignItems: 'stretch', flex: 1, flexWrap: 'nowrap' }}>
               <CAPProperty
                 letter="C"
                 name="Consistency"
@@ -590,7 +590,7 @@ export const Scene3_CAPTheorem: React.FC = () => {
           <div
             style={{
               ...fontPresets.body,
-              fontSize: 32,
+              fontSize: 64,
               color: colors.neutral.white,
               textAlign: 'center',
               marginTop: 50,
@@ -620,15 +620,15 @@ export const Scene3_CAPTheorem: React.FC = () => {
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'space-between',
-            padding: '100px 120px',
+            padding: '200px 240px',
           }}
         >
-          <Title text="Pick Any 2" delay={0} size={85} />
+          <Title text="Pick Any 2" delay={0} size={170} />
 
           <div
             style={{
               display: 'flex',
-              gap: 40,
+              gap: 80,
               flexWrap: 'wrap',
               justifyContent: 'center',
               alignItems: 'center',
@@ -641,7 +641,7 @@ export const Scene3_CAPTheorem: React.FC = () => {
           <div
             style={{
               display: 'flex',
-              gap: 100,
+              gap: 200,
               alignItems: 'center',
             }}
           >
@@ -651,7 +651,7 @@ export const Scene3_CAPTheorem: React.FC = () => {
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
-                gap: 30,
+                gap: 60,
                 opacity: spring({
                   frame: useCurrentFrame() - 60,
                   fps: useVideoConfig().fps,
@@ -659,11 +659,11 @@ export const Scene3_CAPTheorem: React.FC = () => {
                 }),
               }}
             >
-              <div style={{ display: 'flex', gap: 20 }}>
+              <div style={{ display: 'flex', gap: 40 }}>
                 <div
                   style={{
-                    width: 80,
-                    height: 80,
+                    width: 160,
+                    height: 160,
                     borderRadius: '50%',
                     background: `${colors.primary.blue}30`,
                     border: `4px solid ${colors.primary.blue}`,
@@ -671,19 +671,19 @@ export const Scene3_CAPTheorem: React.FC = () => {
                     alignItems: 'center',
                     justifyContent: 'center',
                     ...fontPresets.heading,
-                    fontSize: 48,
+                    fontSize: 96,
                     color: colors.primary.blue,
                   }}
                 >
                   C
                 </div>
-                <div style={{ ...fontPresets.heading, fontSize: 56, color: colors.neutral.white, lineHeight: '80px' }}>
+                <div style={{ ...fontPresets.heading, fontSize: 112, color: colors.neutral.white, lineHeight: '80px' }}>
                   +
                 </div>
                 <div
                   style={{
-                    width: 80,
-                    height: 80,
+                    width: 160,
+                    height: 160,
                     borderRadius: '50%',
                     background: `${colors.primary.purple}30`,
                     border: `4px solid ${colors.primary.purple}`,
@@ -691,14 +691,14 @@ export const Scene3_CAPTheorem: React.FC = () => {
                     alignItems: 'center',
                     justifyContent: 'center',
                     ...fontPresets.heading,
-                    fontSize: 48,
+                    fontSize: 96,
                     color: colors.primary.purple,
                   }}
                 >
                   P
                 </div>
               </div>
-              <div style={{ ...fontPresets.body, fontSize: 28, color: colors.neutral.white }}>
+              <div style={{ ...fontPresets.body, fontSize: 56, color: colors.neutral.white }}>
                 Consistency + Partition
               </div>
             </div>
@@ -707,7 +707,7 @@ export const Scene3_CAPTheorem: React.FC = () => {
             <div
               style={{
                 ...fontPresets.heading,
-                fontSize: 65,
+                fontSize: 130,
                 color: colors.accent.gold,
                 opacity: spring({
                   frame: useCurrentFrame() - 90,
@@ -725,7 +725,7 @@ export const Scene3_CAPTheorem: React.FC = () => {
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
-                gap: 30,
+                gap: 60,
                 opacity: spring({
                   frame: useCurrentFrame() - 120,
                   fps: useVideoConfig().fps,
@@ -733,11 +733,11 @@ export const Scene3_CAPTheorem: React.FC = () => {
                 }),
               }}
             >
-              <div style={{ display: 'flex', gap: 20 }}>
+              <div style={{ display: 'flex', gap: 40 }}>
                 <div
                   style={{
-                    width: 80,
-                    height: 80,
+                    width: 160,
+                    height: 160,
                     borderRadius: '50%',
                     background: `${colors.accent.green}30`,
                     border: `4px solid ${colors.accent.green}`,
@@ -745,19 +745,19 @@ export const Scene3_CAPTheorem: React.FC = () => {
                     alignItems: 'center',
                     justifyContent: 'center',
                     ...fontPresets.heading,
-                    fontSize: 48,
+                    fontSize: 96,
                     color: colors.accent.green,
                   }}
                 >
                   A
                 </div>
-                <div style={{ ...fontPresets.heading, fontSize: 56, color: colors.neutral.white, lineHeight: '80px' }}>
+                <div style={{ ...fontPresets.heading, fontSize: 112, color: colors.neutral.white, lineHeight: '80px' }}>
                   +
                 </div>
                 <div
                   style={{
-                    width: 80,
-                    height: 80,
+                    width: 160,
+                    height: 160,
                     borderRadius: '50%',
                     background: `${colors.primary.purple}30`,
                     border: `4px solid ${colors.primary.purple}`,
@@ -765,14 +765,14 @@ export const Scene3_CAPTheorem: React.FC = () => {
                     alignItems: 'center',
                     justifyContent: 'center',
                     ...fontPresets.heading,
-                    fontSize: 48,
+                    fontSize: 96,
                     color: colors.primary.purple,
                   }}
                 >
                   P
                 </div>
               </div>
-              <div style={{ ...fontPresets.body, fontSize: 28, color: colors.neutral.white }}>
+              <div style={{ ...fontPresets.body, fontSize: 56, color: colors.neutral.white }}>
                 Availability + Partition
               </div>
             </div>
@@ -781,7 +781,7 @@ export const Scene3_CAPTheorem: React.FC = () => {
           <div
             style={{
               ...fontPresets.body,
-              fontSize: 34,
+              fontSize: 68,
               color: colors.neutral.white,
               textAlign: 'center',
               maxWidth: 1100,
@@ -809,16 +809,16 @@ export const Scene3_CAPTheorem: React.FC = () => {
           style={{
             display: 'flex',
             flexDirection: 'column',
-            padding: '80px 100px',
+            padding: '160px 200px',
           }}
         >
           {/* Header - Always at top */}
           <div style={{ marginBottom: 60 }}>
-            <Title text="Real-World Examples" delay={0} size={75} />
+            <Title text="Real-World Examples" delay={0} size={150} />
           </div>
 
           {/* Content - Uses remaining vertical space */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 60, justifyContent: 'center', flex: 1 }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 120, justifyContent: 'center', flex: 1 }}>
             <ExampleCard
               title="CP System"
               picks="Consistency + Partition Tolerance"
@@ -839,7 +839,7 @@ export const Scene3_CAPTheorem: React.FC = () => {
           <div
             style={{
               ...fontPresets.body,
-              fontSize: 30,
+              fontSize: 60,
               color: colors.neutral.white,
               textAlign: 'center',
               marginTop: 50,

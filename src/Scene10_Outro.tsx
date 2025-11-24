@@ -40,33 +40,33 @@ const TakeawayCard = ({
       style={{
         display: 'flex',
         alignItems: 'center',
-        gap: 20,
-        padding: '20px 35px',
+        gap: 40,
+        padding: '40px 70px',
         background: `${colors.neutral.medium}DD`,
-        borderRadius: 12,
+        borderRadius: 24,
         border: `3px solid ${colors.accent.green}`,
         transform: `translateX(${slideIn}px)`,
         opacity,
-        minWidth: 700,
+        minWidth: 1400,
       }}
     >
       <div
         style={{
-          width: 50,
-          height: 50,
+          width: 100,
+          height: 100,
           background: gradients[index % 3],
           borderRadius: '50%',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           ...fontPresets.heading,
-          fontSize: 28,
+          fontSize: 56,
           color: colors.neutral.white,
         }}
       >
         {index + 1}
       </div>
-      <div style={{ ...fontPresets.body, fontSize: 28, color: colors.neutral.white }}>
+      <div style={{ ...fontPresets.body, fontSize: 56, color: colors.neutral.white }}>
         {text}
       </div>
     </div>
@@ -110,24 +110,24 @@ const CTAButton = ({
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        gap: 15,
+        gap: 30,
         transform: `scale(${scale * (frame > delay + 60 ? pulse : 1)})`,
       }}
     >
       <div
         style={{
-          padding: '25px 45px',
+          padding: '50px 90px',
           background: `${color}30`,
           border: `4px solid ${color}`,
-          borderRadius: 15,
+          borderRadius: 30,
           display: 'flex',
           alignItems: 'center',
-          gap: 18,
+          gap: 36,
           cursor: 'pointer',
         }}
       >
-        <div style={{ fontSize: 50 }}>{icon}</div>
-        <div style={{ ...fontPresets.heading, fontSize: 36, color }}>
+        <div style={{ fontSize: 100 }}>{icon}</div>
+        <div style={{ ...fontPresets.heading, fontSize: 72, color }}>
           {text}
         </div>
       </div>
@@ -161,7 +161,7 @@ const ThankYou = ({ delay = 0 }: { delay?: number }) => {
     <div
       style={{
         ...fontPresets.heading,
-        fontSize: 90,
+        fontSize: 180,
         background: createGradient(colors.primary.blue, colors.accent.green, colors.primary.purple),
         WebkitBackgroundClip: 'text',
         WebkitTextFillColor: 'transparent',
@@ -182,7 +182,7 @@ const Title = ({ text, delay = 0 }: { text: string; delay?: number }) => {
     <div
       style={{
         ...fontPresets.heading,
-        fontSize: 70,
+        fontSize: 140,
         background: createGradient(colors.primary.blue, colors.primary.purple),
         WebkitBackgroundClip: 'text',
         WebkitTextFillColor: 'transparent',
@@ -212,13 +212,13 @@ export const Scene10_Outro: React.FC = () => {
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
-            gap: 50,
-            padding: '80px 60px',
+            gap: 100,
+            padding: '160px 120px',
           }}
         >
           <Title text="Key Takeaways" delay={0} />
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 20, marginTop: 20 }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 40, marginTop: 20 }}>
             <TakeawayCard
               text="Design for scale, performance, and reliability"
               delay={30}
@@ -246,13 +246,13 @@ export const Scene10_Outro: React.FC = () => {
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
-            gap: 60,
-            padding: '80px 60px',
+            gap: 120,
+            padding: '160px 120px',
           }}
         >
           <ThankYou delay={0} />
 
-          <div style={{ display: 'flex', gap: 50, marginTop: 20 }}>
+          <div style={{ display: 'flex', gap: 100, marginTop: 20 }}>
             <CTAButton
               icon="👍"
               text="Like"
@@ -276,7 +276,7 @@ export const Scene10_Outro: React.FC = () => {
           <div
             style={{
               ...fontPresets.body,
-              fontSize: 32,
+              fontSize: 64,
               color: colors.neutral.white,
               textAlign: 'center',
               marginTop: 30,

@@ -18,18 +18,27 @@ export const { fontFamily: PoppinsFont } = loadPoppins('normal', {
   subsets: ['latin'],
 });
 
-// Font presets for different text types
+// Font presets for different text types - optimized for 4K rendering
 export const fontPresets = {
   heading: {
     fontFamily: PoppinsFont,
     fontWeight: '700',
+    textRendering: 'optimizeLegibility',
+    WebkitFontSmoothing: 'antialiased',
+    MozOsxFontSmoothing: 'grayscale',
   },
   body: {
     fontFamily: InterFont,
     fontWeight: '400',
+    textRendering: 'optimizeLegibility',
+    WebkitFontSmoothing: 'antialiased',
+    MozOsxFontSmoothing: 'grayscale',
   },
   mono: {
     fontFamily: RobotoFont,
     fontWeight: '500',
+    textRendering: 'optimizeLegibility',
+    WebkitFontSmoothing: 'antialiased',
+    MozOsxFontSmoothing: 'grayscale',
   },
 };

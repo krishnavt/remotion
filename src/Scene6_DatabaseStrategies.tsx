@@ -36,29 +36,29 @@ const DBCard = ({
       style={{
         display: 'flex',
         flexDirection: 'column',
-        gap: 20,
+        gap: 40,
         padding: 30,
         background: `${colors.neutral.medium}DD`,
-        borderRadius: 15,
+        borderRadius: 30,
         border: `3px solid ${color}`,
         transform: `scale(${scale})`,
-        maxWidth: 450,
+        maxWidth: 900,
       }}
     >
-      <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
-        <Icon size={70} color={color} />
-        <div style={{ ...fontPresets.heading, fontSize: 42, color }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 40 }}>
+        <Icon size={140} color={color} />
+        <div style={{ ...fontPresets.heading, fontSize: 84, color }}>
           {type}
         </div>
       </div>
 
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
         {pros.map((pro, i) => (
           <div
             key={i}
             style={{
               ...fontPresets.body,
-              fontSize: 26,
+              fontSize: 52,
               color: colors.neutral.white,
               opacity: 0.9,
             }}
@@ -71,7 +71,7 @@ const DBCard = ({
       <div
         style={{
           ...fontPresets.body,
-          fontSize: 24,
+          fontSize: 48,
           color: colors.accent.green,
           marginTop: 10,
         }}
@@ -94,7 +94,7 @@ const ShardingDiagram = ({ delay = 0 }: { delay?: number }) => {
   ];
 
   return (
-    <div style={{ display: 'flex', gap: 40, opacity: spring({ frame: frame - delay, fps, config: { damping: 100 } }) }}>
+    <div style={{ display: 'flex', gap: 80, opacity: spring({ frame: frame - delay, fps, config: { damping: 100 } }) }}>
       {shards.map((shard, i) => (
         <div
           key={i}
@@ -102,28 +102,28 @@ const ShardingDiagram = ({ delay = 0 }: { delay?: number }) => {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            gap: 15,
+            gap: 30,
             transform: `scale(${spring({ frame: frame - delay - i * 20, fps, from: 0, to: 1, config: { damping: 15 } })})`,
           }}
         >
           <div
             style={{
-              width: 120,
-              height: 150,
+              width: 240,
+              height: 300,
               background: `${shard.color}30`,
               border: `3px solid ${shard.color}`,
-              borderRadius: 10,
+              borderRadius: 20,
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               ...fontPresets.heading,
-              fontSize: 45,
+              fontSize: 90,
               color: shard.color,
             }}
           >
             {shard.data}
           </div>
-          <div style={{ ...fontPresets.body, fontSize: 28, color: colors.neutral.white }}>
+          <div style={{ ...fontPresets.body, fontSize: 56, color: colors.neutral.white }}>
             {shard.label}
           </div>
         </div>
@@ -143,19 +143,19 @@ const ReplicationDiagram = ({ delay = 0 }: { delay?: number }) => {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        gap: 50,
+        gap: 100,
         opacity: spring({ frame: frame - delay, fps, config: { damping: 100 } }),
       }}
     >
       {/* Master */}
       <div
         style={{
-          padding: '25px 50px',
+          padding: '50px 100px',
           background: `${colors.accent.green}30`,
           border: `3px solid ${colors.accent.green}`,
-          borderRadius: 12,
+          borderRadius: 24,
           ...fontPresets.heading,
-          fontSize: 40,
+          fontSize: 80,
           color: colors.accent.green,
         }}
       >
@@ -163,26 +163,26 @@ const ReplicationDiagram = ({ delay = 0 }: { delay?: number }) => {
       </div>
 
       {/* Arrow down */}
-      <div style={{ color: colors.neutral.gray, fontSize: 40 }}>↓</div>
+      <div style={{ color: colors.neutral.gray, fontSize: 80 }}>↓</div>
 
       {/* Slaves */}
-      <div style={{ display: 'flex', gap: 30 }}>
+      <div style={{ display: 'flex', gap: 60 }}>
         {['Slave 1', 'Slave 2', 'Slave 3'].map((slave, i) => (
           <div
             key={i}
             style={{
-              padding: '20px 35px',
+              padding: '40px 70px',
               background: `${colors.primary.blue}30`,
               border: `3px solid ${colors.primary.blue}`,
-              borderRadius: 12,
+              borderRadius: 24,
               ...fontPresets.body,
-              fontSize: 32,
+              fontSize: 64,
               color: colors.primary.blue,
               opacity: spring({ frame: frame - delay - 30 - i * 15, fps, config: { damping: 100 } }),
             }}
           >
             {slave}
-            <div style={{ fontSize: 22, opacity: 0.8, marginTop: 5 }}>(Reads)</div>
+            <div style={{ fontSize: 44, opacity: 0.8, marginTop: 5 }}>(Reads)</div>
           </div>
         ))}
       </div>
@@ -224,7 +224,7 @@ const Title = ({ text, delay = 0 }: { text: string; delay?: number }) => {
     <div
       style={{
         ...fontPresets.heading,
-        fontSize: 70,
+        fontSize: 140,
         background: createGradient(colors.primary.blue, colors.primary.purple),
         WebkitBackgroundClip: 'text',
         WebkitTextFillColor: 'transparent',
@@ -258,8 +258,8 @@ export const Scene6_DatabaseStrategies: React.FC = () => {
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
-            gap: 60,
-            padding: '80px 60px',
+            gap: 120,
+            padding: '160px 120px',
           }}
         >
           <Title text="SQL Databases" delay={0} />
@@ -288,8 +288,8 @@ export const Scene6_DatabaseStrategies: React.FC = () => {
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
-            gap: 60,
-            padding: '80px 60px',
+            gap: 120,
+            padding: '160px 120px',
           }}
         >
           <Title text="NoSQL Databases" delay={0} />
@@ -318,8 +318,8 @@ export const Scene6_DatabaseStrategies: React.FC = () => {
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
-            gap: 60,
-            padding: '80px 60px',
+            gap: 120,
+            padding: '160px 120px',
           }}
         >
           <Title text="In-Memory Databases" delay={0} />
@@ -348,12 +348,12 @@ export const Scene6_DatabaseStrategies: React.FC = () => {
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
-            gap: 60,
-            padding: '80px 60px',
+            gap: 120,
+            padding: '160px 120px',
           }}
         >
           <Title text="Sharding" delay={0} />
-          <div style={{ ...fontPresets.body, fontSize: 36, color: colors.neutral.white, opacity: 0.9 }}>
+          <div style={{ ...fontPresets.body, fontSize: 72, color: colors.neutral.white, opacity: 0.9 }}>
             Split data across databases
           </div>
           <ShardingDiagram delay={30} />
@@ -374,12 +374,12 @@ export const Scene6_DatabaseStrategies: React.FC = () => {
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
-            gap: 60,
-            padding: '80px 60px',
+            gap: 120,
+            padding: '160px 120px',
           }}
         >
           <Title text="Replication" delay={0} />
-          <div style={{ ...fontPresets.body, fontSize: 36, color: colors.neutral.white, opacity: 0.9 }}>
+          <div style={{ ...fontPresets.body, fontSize: 72, color: colors.neutral.white, opacity: 0.9 }}>
             Master-Slave for read scaling
           </div>
           <ReplicationDiagram delay={30} />

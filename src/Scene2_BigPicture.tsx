@@ -169,12 +169,12 @@ const UseCaseTag = ({ text, delay = 0, color }: { text: string; delay?: number; 
     <div
       style={{
         transform: `scale(${scale})`,
-        padding: '8px 16px',
+        padding: '16px 32px',
         background: `${color}20`,
         border: `2px solid ${color}`,
-        borderRadius: 8,
+        borderRadius: 16,
         ...fontPresets.body,
-        fontSize: 18,
+        fontSize: 36,
         color: colors.neutral.white,
       }}
     >
@@ -216,20 +216,20 @@ const AssetBadge = ({
       style={{
         display: 'flex',
         alignItems: 'center',
-        gap: 12,
-        padding: '14px 22px',
-        borderRadius: 16,
+        gap: 24,
+        padding: '28px 44px',
+        borderRadius: 32,
         border: `2px solid ${color}60`,
         background: `${color}12`,
         transform: `translateY(${rise}px)`,
         opacity,
       }}
     >
-      <Icon size={58} />
+      <Icon size={116} />
       <div
         style={{
           ...fontPresets.body,
-          fontSize: 26,
+          fontSize: 52,
           color: colors.neutral.white,
         }}
       >
@@ -307,7 +307,7 @@ const Label = ({ text, delay = 0 }: { text: string; delay?: number }) => {
     <div
       style={{
         ...fontPresets.body,
-        fontSize: 42,
+        fontSize: 84,
         color: colors.neutral.white,
         opacity: opacity * 0.9,
         transform: `translateY(${bounce}px)`,
@@ -359,21 +359,21 @@ const OperationCard = ({
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        gap: 25,
-        padding: '45px 55px',
+        gap: 50,
+        padding: '90px 110px',
         background: `${colors.neutral.medium}CC`,
-        borderRadius: 20,
+        borderRadius: 40,
         border: `3px solid ${colors.neutral.light}`,
         transform: `scale(${scale}) rotateY(${rotateY}deg)`,
         opacity,
-        minWidth: 320,
+        minWidth: 640,
       }}
     >
-      <Icon size={160} />
+      <Icon size={320} />
       <div
         style={{
           ...fontPresets.heading,
-          fontSize: 48,
+          fontSize: 96,
           color: colors.neutral.white,
         }}
       >
@@ -418,16 +418,16 @@ const StatCard = ({
         textAlign: 'center',
         transform: `scale(${scale})`,
         opacity,
-        padding: '20px 30px',
+        padding: '40px 60px',
         background: `${color}15`,
-        borderRadius: 12,
+        borderRadius: 24,
         border: `2px solid ${color}40`,
       }}
     >
-      <div style={{ ...fontPresets.heading, fontSize: 54, color }}>
+      <div style={{ ...fontPresets.heading, fontSize: 108, color }}>
         {value}
       </div>
-      <div style={{ ...fontPresets.body, fontSize: 26, color: colors.neutral.white, opacity: 0.85, marginTop: 8 }}>
+      <div style={{ ...fontPresets.body, fontSize: 52, color: colors.neutral.white, opacity: 0.85, marginTop: 8 }}>
         {label}
       </div>
     </div>
@@ -454,21 +454,21 @@ const PerformanceBar = ({ value, label, delay = 0, color }: { value: number; lab
   });
 
   return (
-    <div style={{ opacity, display: 'flex', alignItems: 'center', gap: 15, minWidth: 200 }}>
-      <div style={{ ...fontPresets.body, fontSize: 20, color: colors.neutral.white, minWidth: 90 }}>
+    <div style={{ opacity, display: 'flex', alignItems: 'center', gap: 30, minWidth: 400 }}>
+      <div style={{ ...fontPresets.body, fontSize: 40, color: colors.neutral.white, minWidth: 180 }}>
         {label}
       </div>
-      <div style={{ flex: 1, height: 8, background: `${colors.neutral.light}20`, borderRadius: 4, overflow: 'hidden' }}>
+      <div style={{ flex: 1, height: 8, background: `${colors.neutral.light}20`, borderRadius: 8, overflow: 'hidden' }}>
         <div
           style={{
             width: `${width}%`,
             height: '100%',
             background: color,
-            borderRadius: 4,
+            borderRadius: 8,
           }}
         />
       </div>
-      <div style={{ ...fontPresets.body, fontSize: 18, color, minWidth: 40 }}>
+      <div style={{ ...fontPresets.body, fontSize: 36, color, minWidth: 80 }}>
         {Math.round(width)}%
       </div>
     </div>
@@ -518,7 +518,7 @@ const ArchitectureLayer = ({
         gap: compact ? 24 : 30,
         background: `${colors.neutral.medium}DD`,
         padding: compact ? '18px 40px' : '22px 45px',
-        borderRadius: 15,
+        borderRadius: 30,
         border: `3px solid ${colors.primary.blue}`,
         minWidth: compact ? 260 : 700,
         flex: compact ? 1 : undefined,
@@ -540,7 +540,7 @@ const ArchitectureLayer = ({
           {label}
         </div>
         {metrics && (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
             {metrics.map((metric, i) => (
               <PerformanceBar
                 key={i}
@@ -604,34 +604,34 @@ export const Scene2_BigPicture: React.FC = () => {
               flexDirection: 'column',
               alignItems: 'center',
               justifyContent: 'space-between',
-              padding: '90px 120px',
+              padding: '180px 240px',
             }}
           >
-            <Title text="The Data Journey" delay={0} size={85} />
+            <Title text="The Data Journey" delay={0} size={170} />
 
             <div
               style={{
                 display: 'flex',
                 alignItems: 'center',
-                gap: 50,
+                gap: 100,
               }}
             >
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 20 }}>
-                <UserIconLarge size={145} />
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 40 }}>
+                <UserIconLarge size={290} />
                 <Label text="User" delay={25} />
               </div>
 
               <AnimatedArrow delay={35} />
 
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 20 }}>
-                <ServerIconLarge size={145} />
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 40 }}>
+                <ServerIconLarge size={290} />
                 <Label text="Server" delay={55} />
               </div>
 
               <AnimatedArrow delay={75} />
 
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 20 }}>
-                <DatabaseIconLarge size={145} />
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 40 }}>
+                <DatabaseIconLarge size={290} />
                 <Label text="Database" delay={95} />
               </div>
             </div>
@@ -640,7 +640,7 @@ export const Scene2_BigPicture: React.FC = () => {
             <div
               style={{
                 display: 'flex',
-                gap: 70,
+                gap: 140,
               }}
             >
               <StatCard value="~100ms" label="Typical Round Trip" color={colors.accent.green} delay={180} />
@@ -665,39 +665,39 @@ export const Scene2_BigPicture: React.FC = () => {
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'space-between',
-            padding: '80px 100px',
+            padding: '160px 200px',
           }}
         >
-          <Title text="Three Core Operations" delay={0} size={80} />
+          <Title text="Three Core Operations" delay={0} size={160} />
 
           {/* Operation cards with examples */}
           <div
             style={{
               display: 'flex',
-              gap: 50,
+              gap: 100,
             }}
           >
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 20 }}>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 40 }}>
               <OperationCard Icon={MovingDataIcon} title="Moving" delay={35} />
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 10, alignItems: 'center' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 20, alignItems: 'center' }}>
                 <UseCaseTag text="HTTP/REST" delay={120} color={colors.primary.blue} />
                 <UseCaseTag text="WebSockets" delay={140} color={colors.primary.blue} />
                 <UseCaseTag text="Message Queues" delay={160} color={colors.primary.blue} />
               </div>
             </div>
 
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 20 }}>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 40 }}>
               <OperationCard Icon={StoringDataIcon} title="Storing" delay={65} />
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 10, alignItems: 'center' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 20, alignItems: 'center' }}>
                 <UseCaseTag text="Databases" delay={150} color={colors.accent.green} />
                 <UseCaseTag text="File Systems" delay={170} color={colors.accent.green} />
                 <UseCaseTag text="Caches" delay={190} color={colors.accent.green} />
               </div>
             </div>
 
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 20 }}>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 40 }}>
               <OperationCard Icon={TransformingDataIcon} title="Transforming" delay={95} />
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 10, alignItems: 'center' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 20, alignItems: 'center' }}>
                 <UseCaseTag text="Data Processing" delay={180} color={colors.primary.purple} />
                 <UseCaseTag text="Encryption" delay={200} color={colors.primary.purple} />
                 <UseCaseTag text="Compression" delay={220} color={colors.primary.purple} />
@@ -711,7 +711,7 @@ export const Scene2_BigPicture: React.FC = () => {
               display: 'flex',
               flexWrap: 'wrap',
               justifyContent: 'center',
-              gap: 24,
+              gap: 48,
               width: '100%',
             }}
           >
@@ -725,7 +725,7 @@ export const Scene2_BigPicture: React.FC = () => {
           <div
             style={{
               ...fontPresets.body,
-              fontSize: 29,
+              fontSize: 58,
               color: colors.neutral.white,
               textAlign: 'center',
               maxWidth: 1150,
@@ -756,16 +756,16 @@ export const Scene2_BigPicture: React.FC = () => {
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'space-between',
-            padding: '60px 100px',
+            padding: '120px 200px',
           }}
         >
-          <Title text="At Scale" delay={0} size={80} />
+          <Title text="At Scale" delay={0} size={160} />
 
           {/* Architecture stack with metrics */}
           <div
             style={{
               display: 'flex',
-              gap: 24,
+              gap: 48,
               alignItems: 'stretch',
               justifyContent: 'center',
               flexWrap: 'nowrap',
@@ -822,7 +822,7 @@ export const Scene2_BigPicture: React.FC = () => {
           <div
             style={{
               ...fontPresets.body,
-              fontSize: 24,
+              fontSize: 48,
               color: colors.neutral.white,
               textAlign: 'center',
               maxWidth: 1050,

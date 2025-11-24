@@ -51,7 +51,7 @@ const AnimatedCounter = ({
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        gap: 15,
+        gap: 30,
         opacity,
         transform: `scale(${scale})`,
       }}
@@ -59,7 +59,7 @@ const AnimatedCounter = ({
       <div
         style={{
           ...fontPresets.heading,
-          fontSize: 85,
+          fontSize: 170,
           color,
           filter: `drop-shadow(0 0 20px ${color}40)`,
         }}
@@ -69,7 +69,7 @@ const AnimatedCounter = ({
       <div
         style={{
           ...fontPresets.body,
-          fontSize: 36,
+          fontSize: 72,
           color: colors.neutral.white,
           opacity: 0.9,
         }}
@@ -119,32 +119,32 @@ const MetricCard = ({
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        gap: 20,
+        gap: 40,
         padding: 35,
         background: `${colors.neutral.medium}DD`,
-        borderRadius: 15,
+        borderRadius: 30,
         border: `3px solid ${color}`,
         transform: `translateY(${slideUp}px)`,
         opacity,
-        minWidth: 280,
-        maxWidth: 320,
+        minWidth: 560,
+        maxWidth: 640,
       }}
     >
-      <Icon size={100} color={color} />
+      <Icon size={200} color={color} />
       <div
         style={{
           ...fontPresets.heading,
-          fontSize: 70,
+          fontSize: 140,
           color,
         }}
       >
         {value}
-        <span style={{ fontSize: 45 }}>{unit}</span>
+        <span style={{ fontSize: 90 }}>{unit}</span>
       </div>
       <div
         style={{
           ...fontPresets.body,
-          fontSize: 32,
+          fontSize: 64,
           color: colors.neutral.white,
           textAlign: 'center',
         }}
@@ -193,7 +193,7 @@ const SeeSaw = ({ tiltLeft = false, delay = 0 }: { tiltLeft?: boolean; delay?: n
   });
 
   return (
-    <div style={{ opacity, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 30 }}>
+    <div style={{ opacity, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 60 }}>
       <svg width="400" height="250" viewBox="0 0 400 250">
         {/* Fulcrum */}
         <polygon
@@ -242,11 +242,11 @@ const SeeSaw = ({ tiltLeft = false, delay = 0 }: { tiltLeft?: boolean; delay?: n
         </g>
       </svg>
 
-      <div style={{ display: 'flex', gap: 100 }}>
-        <div style={{ ...fontPresets.heading, fontSize: 40, color: colors.accent.green }}>
+      <div style={{ display: 'flex', gap: 200 }}>
+        <div style={{ ...fontPresets.heading, fontSize: 80, color: colors.accent.green }}>
           Throughput
         </div>
-        <div style={{ ...fontPresets.heading, fontSize: 40, color: colors.accent.orange }}>
+        <div style={{ ...fontPresets.heading, fontSize: 80, color: colors.accent.orange }}>
           Latency
         </div>
       </div>
@@ -260,15 +260,15 @@ const AvailabilityChart = ({ delay = 0 }: { delay?: number }) => {
   const { fps } = useVideoConfig();
 
   const nines = [
-    { level: '99.9%', downtime: '8.76 hours/year', height: 50, color: colors.accent.orange },
-    { level: '99.99%', downtime: '52 min/year', height: 80, color: colors.accent.green },
+    { level: '99.9%', downtime: '8.76 hours/year', height: 100, color: colors.accent.orange },
+    { level: '99.99%', downtime: '52 min/year', height: 160, color: colors.accent.green },
   ];
 
   return (
     <div
       style={{
         display: 'flex',
-        gap: 60,
+        gap: 120,
         alignItems: 'flex-end',
         opacity: spring({
           frame: frame - delay,
@@ -293,15 +293,15 @@ const AvailabilityChart = ({ delay = 0 }: { delay?: number }) => {
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
-              gap: 20,
+              gap: 40,
             }}
           >
             <div
               style={{
-                width: 140,
+                width: 280,
                 height: barHeight * 3,
                 background: createGradient(nine.color, colors.neutral.dark, 180),
-                borderRadius: 8,
+                borderRadius: 16,
                 border: `3px solid ${nine.color}`,
                 display: 'flex',
                 alignItems: 'center',
@@ -311,7 +311,7 @@ const AvailabilityChart = ({ delay = 0 }: { delay?: number }) => {
               <div
                 style={{
                   ...fontPresets.heading,
-                  fontSize: 45,
+                  fontSize: 90,
                   color: colors.neutral.white,
                 }}
               >
@@ -321,7 +321,7 @@ const AvailabilityChart = ({ delay = 0 }: { delay?: number }) => {
             <div
               style={{
                 ...fontPresets.body,
-                fontSize: 28,
+                fontSize: 56,
                 color: colors.neutral.white,
                 textAlign: 'center',
                 opacity: 0.8,
@@ -413,12 +413,12 @@ export const Scene4_ScalePerformance: React.FC = () => {
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'space-between',
-            padding: '100px 120px',
+            padding: '200px 240px',
           }}
         >
           <Title text="What is Scale?" delay={0} />
 
-          <div style={{ display: 'flex', gap: 80 }}>
+          <div style={{ display: 'flex', gap: 160 }}>
             <AnimatedCounter
               targetNumber={1000000}
               suffix="+"
@@ -445,7 +445,7 @@ export const Scene4_ScalePerformance: React.FC = () => {
           <div
             style={{
               ...fontPresets.body,
-              fontSize: 32,
+              fontSize: 64,
               color: colors.neutral.white,
               textAlign: 'center',
               maxWidth: 1100,
@@ -475,12 +475,12 @@ export const Scene4_ScalePerformance: React.FC = () => {
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'space-between',
-            padding: '100px 120px',
+            padding: '200px 240px',
           }}
         >
-          <Title text="Scale Metrics" delay={0} size={70} />
+          <Title text="Scale Metrics" delay={0} size={140} />
 
-          <div style={{ display: 'flex', gap: 50 }}>
+          <div style={{ display: 'flex', gap: 100 }}>
             <MetricCard
               icon={UsersIcon}
               title="Daily Active Users"
@@ -510,7 +510,7 @@ export const Scene4_ScalePerformance: React.FC = () => {
           <div
             style={{
               ...fontPresets.body,
-              fontSize: 30,
+              fontSize: 60,
               color: colors.neutral.white,
               textAlign: 'center',
               maxWidth: 1000,
@@ -540,16 +540,16 @@ export const Scene4_ScalePerformance: React.FC = () => {
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'space-between',
-            padding: '100px 120px',
+            padding: '200px 240px',
           }}
         >
           <Title text="Performance Metrics" delay={0} />
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 60, alignItems: 'center' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 120, alignItems: 'center' }}>
             {/* Throughput */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: 40 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 80 }}>
               <CarIcon
-                size={120}
+                size={240}
                 color={colors.accent.green}
                 position={interpolate(
                   useCurrentFrame() - 900,
@@ -558,15 +558,15 @@ export const Scene4_ScalePerformance: React.FC = () => {
                   { extrapolateRight: 'clamp' }
                 )}
               />
-              <div style={{ ...fontPresets.heading, fontSize: 50, color: colors.accent.green }}>
+              <div style={{ ...fontPresets.heading, fontSize: 100, color: colors.accent.green }}>
                 Throughput: Cars/Hour
               </div>
             </div>
 
             {/* Latency */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: 40 }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 80 }}>
               <CarIcon
-                size={120}
+                size={240}
                 color={colors.accent.orange}
                 position={interpolate(
                   useCurrentFrame() - 900,
@@ -575,7 +575,7 @@ export const Scene4_ScalePerformance: React.FC = () => {
                   { extrapolateRight: 'clamp' }
                 )}
               />
-              <div style={{ ...fontPresets.heading, fontSize: 50, color: colors.accent.orange }}>
+              <div style={{ ...fontPresets.heading, fontSize: 100, color: colors.accent.orange }}>
                 Latency: Time/Request
               </div>
             </div>
@@ -584,7 +584,7 @@ export const Scene4_ScalePerformance: React.FC = () => {
           <div
             style={{
               ...fontPresets.body,
-              fontSize: 30,
+              fontSize: 60,
               color: colors.neutral.white,
               textAlign: 'center',
               maxWidth: 1000,
@@ -614,7 +614,7 @@ export const Scene4_ScalePerformance: React.FC = () => {
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'space-between',
-            padding: '100px 120px',
+            padding: '200px 240px',
           }}
         >
           <Title text="The Trade-off" delay={0} />
@@ -622,7 +622,7 @@ export const Scene4_ScalePerformance: React.FC = () => {
           <div
             style={{
               ...fontPresets.body,
-              fontSize: 32,
+              fontSize: 64,
               color: colors.neutral.white,
               textAlign: 'center',
               maxWidth: 1000,
@@ -652,7 +652,7 @@ export const Scene4_ScalePerformance: React.FC = () => {
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'space-between',
-            padding: '100px 120px',
+            padding: '200px 240px',
           }}
         >
           <Title text="Availability Nines" delay={0} />
@@ -663,14 +663,14 @@ export const Scene4_ScalePerformance: React.FC = () => {
             style={{
               display: 'flex',
               flexDirection: 'column',
-              gap: 30,
+              gap: 60,
               alignItems: 'center',
             }}
           >
             <div
               style={{
                 ...fontPresets.heading,
-                fontSize: 42,
+                fontSize: 84,
                 color: colors.accent.green,
                 textAlign: 'center',
                 opacity: spring({
@@ -685,7 +685,7 @@ export const Scene4_ScalePerformance: React.FC = () => {
             <div
               style={{
                 ...fontPresets.body,
-                fontSize: 28,
+                fontSize: 56,
                 color: colors.neutral.white,
                 textAlign: 'center',
                 maxWidth: 900,

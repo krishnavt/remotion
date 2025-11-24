@@ -82,7 +82,7 @@ const AnimatedNumber = ({
     <div
       style={{
         ...fontPresets.heading,
-        fontSize: 120,
+        fontSize: 240,
         background: createGradient(colors.primary.blue, colors.accent.green),
         WebkitBackgroundClip: 'text',
         WebkitTextFillColor: 'transparent',
@@ -100,13 +100,13 @@ const TechLogo = ({ name, color, bgGradient }: { name: string; color?: string; b
   <div
     style={{
       ...fontPresets.heading,
-      fontSize: 80,
+      fontSize: 160,
       color: color || colors.neutral.white,
       background: bgGradient,
       WebkitBackgroundClip: bgGradient ? 'text' : undefined,
       WebkitTextFillColor: bgGradient ? 'transparent' : undefined,
-      padding: '20px 40px',
-      borderRadius: 12,
+      padding: '40px 80px',
+      borderRadius: 24,
       letterSpacing: 3,
       textShadow: !bgGradient ? `0 0 30px ${color}40` : undefined,
     }}
@@ -142,16 +142,16 @@ const CompanySpotlight = ({
   return (
     <div
       style={{
-        minWidth: 260,
-        maxWidth: 320,
-        padding: '26px 32px',
-        borderRadius: 30,
+        minWidth: 520,
+        maxWidth: 640,
+        padding: '52px 64px',
+        borderRadius: 60,
         background: `linear-gradient(150deg, ${accent}25, rgba(4,10,24,0.95))`,
         border: `1px solid ${accent}70`,
         boxShadow: `0 30px 70px ${accent}33`,
         display: 'flex',
         flexDirection: 'column',
-        gap: 16,
+        gap: 32,
         opacity: appear,
         transform: `translateY(${translate}px) scale(${0.9 + appear * 0.1})`,
       }}
@@ -160,7 +160,7 @@ const CompanySpotlight = ({
       <div
         style={{
           ...fontPresets.heading,
-          fontSize: 68,
+          fontSize: 136,
           color: accent,
           textAlign: 'center',
           lineHeight: 1,
@@ -171,7 +171,7 @@ const CompanySpotlight = ({
       <div
         style={{
           ...fontPresets.body,
-          fontSize: 26,
+          fontSize: 52,
           color: colors.neutral.white,
           textAlign: 'center',
           opacity: 0.9,
@@ -255,7 +255,7 @@ const OrbitingIcons = () => {
               transform: `translate(calc(-50% + ${x}px), calc(-50% + ${y}px)) scale(${scale})`,
             }}
           >
-            <Icon color={color} size={150} opacity={0.8} />
+            <Icon color={color} size={300} opacity={0.8} />
           </div>
         );
       })}
@@ -277,7 +277,7 @@ const UserGrid = ({ count, delay = 0 }: { count: number; delay?: number }) => {
       style={{
         display: 'grid',
         gridTemplateColumns: `repeat(${cols}, 1fr)`,
-        gap: 20,
+        gap: 40,
         maxWidth: 1200,
       }}
     >
@@ -292,7 +292,7 @@ const UserGrid = ({ count, delay = 0 }: { count: number; delay?: number }) => {
 
         return (
           <div key={i} style={{ opacity }}>
-            <UserIcon size={50} />
+            <UserIcon size={100} />
           </div>
         );
       })}
@@ -323,13 +323,13 @@ export const Scene1_HookIntro: React.FC = () => {
               flexDirection: 'column',
               alignItems: 'center',
               justifyContent: 'center',
-              gap: 30,
+              gap: 60,
             }}
           >
             <h1
               style={{
                 ...fontPresets.heading,
-                fontSize: 140,
+                fontSize: 280,
                 margin: 0,
                 background: createGradient(colors.primary.blue, colors.primary.purple),
                 WebkitBackgroundClip: 'text',
@@ -363,14 +363,14 @@ export const Scene1_HookIntro: React.FC = () => {
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
-            gap: 80,
+            gap: 160,
           }}
         >
           <TechLogo name="NETFLIX" color="#E50914" />
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: 40 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 80 }}>
             <AnimatedNumber targetNumber={200} suffix="M" delay={20} />
-            <MinimalText text="users" delay={40} size={60} />
+            <MinimalText text="users" delay={40} size={120} />
           </div>
 
           <UserGrid count={120} delay={30} />
@@ -385,7 +385,7 @@ export const Scene1_HookIntro: React.FC = () => {
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
-            gap: 80,
+            gap: 160,
           }}
         >
           <TechLogo
@@ -393,9 +393,9 @@ export const Scene1_HookIntro: React.FC = () => {
             bgGradient="linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%)"
           />
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: 40 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 80 }}>
             <AnimatedNumber targetNumber={500} suffix="M" delay={20} />
-            <MinimalText text="daily users" delay={40} size={60} />
+            <MinimalText text="daily users" delay={40} size={120} />
           </div>
 
           <UserGrid count={120} delay={30} />
@@ -410,16 +410,16 @@ export const Scene1_HookIntro: React.FC = () => {
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
-            gap: 50,
+            gap: 100,
             padding: '0 120px',
           }}
         >
-          <MinimalText text="The secret?" delay={0} size={68} />
+          <MinimalText text="The secret?" delay={0} size={136} />
 
           <div
             style={{
               ...fontPresets.heading,
-              fontSize: 150,
+              fontSize: 300,
               background: createGradient(colors.accent.green, colors.accent.gold),
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
@@ -439,7 +439,7 @@ export const Scene1_HookIntro: React.FC = () => {
           <div
             style={{
               ...fontPresets.body,
-              fontSize: 42,
+              fontSize: 84,
               color: colors.neutral.light,
               textAlign: 'center',
               opacity: spring({
@@ -457,7 +457,7 @@ export const Scene1_HookIntro: React.FC = () => {
           <div
             style={{
               display: 'flex',
-              gap: 35,
+              gap: 70,
               flexWrap: 'wrap',
               justifyContent: 'center',
               width: '100%',
@@ -473,7 +473,7 @@ export const Scene1_HookIntro: React.FC = () => {
                 <div
                   style={{
                     ...fontPresets.heading,
-                    fontSize: 64,
+                    fontSize: 128,
                     letterSpacing: 6,
                     color: colors.neutral.white,
                   }}
@@ -491,7 +491,7 @@ export const Scene1_HookIntro: React.FC = () => {
                 <div
                   style={{
                     ...fontPresets.heading,
-                    fontSize: 72,
+                    fontSize: 144,
                     color: '#7cc8ff',
                     letterSpacing: 8,
                   }}
@@ -509,7 +509,7 @@ export const Scene1_HookIntro: React.FC = () => {
                 <div
                   style={{
                     ...fontPresets.heading,
-                    fontSize: 60,
+                    fontSize: 120,
                     color: '#1DB954',
                     letterSpacing: 4,
                   }}
@@ -520,7 +520,7 @@ export const Scene1_HookIntro: React.FC = () => {
             />
           </div>
 
-          <MinimalText text="System design keeps them all online." delay={560} size={56} />
+          <MinimalText text="System design keeps them all online." delay={560} size={112} />
         </AbsoluteFill>
       </Sequence>
 
@@ -532,12 +532,12 @@ export const Scene1_HookIntro: React.FC = () => {
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
-            gap: 100,
+            gap: 200,
           }}
         >
           <div style={{
             display: 'flex',
-            gap: 100,
+            gap: 200,
             opacity: spring({
               frame: frame - 660,
               fps,
@@ -546,18 +546,18 @@ export const Scene1_HookIntro: React.FC = () => {
               config: { damping: 100 },
             }),
           }}>
-            <ServerIcon size={180} />
-            <DatabaseIcon size={180} />
-            <CloudIcon size={180} />
-            <NetworkIcon size={180} />
+            <ServerIcon size={360} />
+            <DatabaseIcon size={360} />
+            <CloudIcon size={360} />
+            <NetworkIcon size={360} />
           </div>
 
-          <MinimalText text="Master scalable systems" delay={30} size={65} />
+          <MinimalText text="Master scalable systems" delay={30} size={130} />
 
           <div
             style={{
               ...fontPresets.heading,
-              fontSize: 90,
+              fontSize: 180,
               color: colors.accent.green,
               opacity: spring({
                 frame: frame - 720,

@@ -10,8 +10,8 @@ export const SAFE_AREA = {
 
 // Video dimensions
 export const VIDEO_DIMENSIONS = {
-  width: 1920,
-  height: 1080,
+  width: 3840,
+  height: 2160,
 };
 
 // Calculate safe area dimensions

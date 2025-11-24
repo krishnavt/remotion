@@ -41,7 +41,7 @@ const Layer = ({
     <div
       style={{
         display: 'flex',
-        gap: 30,
+        gap: 60,
         alignItems: 'center',
         opacity,
         transform: `translateY(${slideIn}px)`,
@@ -52,37 +52,37 @@ const Layer = ({
         style={{
           display: 'flex',
           alignItems: 'center',
-          gap: 30,
-          padding: '25px 45px',
+          gap: 60,
+          padding: '50px 90px',
           background: `${colors.neutral.medium}DD`,
-          borderRadius: 15,
+          borderRadius: 30,
           border: `4px solid ${color}`,
-          minWidth: 450,
+          minWidth: 900,
         }}
       >
-        <Icon size={70} color={color} />
+        <Icon size={140} color={color} />
         <div>
-          <div style={{ ...fontPresets.body, fontSize: 22, color: colors.neutral.gray, marginBottom: 5 }}>
+          <div style={{ ...fontPresets.body, fontSize: 44, color: colors.neutral.gray, marginBottom: 5 }}>
             Layer {number}
           </div>
-          <div style={{ ...fontPresets.heading, fontSize: 42, color: colors.neutral.white }}>
+          <div style={{ ...fontPresets.heading, fontSize: 84, color: colors.neutral.white }}>
             {title}
           </div>
         </div>
       </div>
 
       {/* Examples */}
-      <div style={{ display: 'flex', gap: 15 }}>
+      <div style={{ display: 'flex', gap: 30 }}>
         {examples.map((example, i) => (
           <div
             key={i}
             style={{
               ...fontPresets.body,
-              fontSize: 24,
+              fontSize: 48,
               color: colors.neutral.white,
               background: `${color}25`,
-              padding: '12px 24px',
-              borderRadius: 8,
+              padding: '24px 48px',
+              borderRadius: 16,
               border: `2px solid ${color}`,
               opacity: spring({
                 frame: frame - delay - 25 - i * 10,
@@ -123,23 +123,23 @@ const FlowLayer = ({
   });
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 20, opacity }}>
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 40, opacity }}>
       {/* Layer */}
       <div
         style={{
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          gap: 25,
-          padding: '20px 60px',
+          gap: 50,
+          padding: '40px 120px',
           background: `${colors.neutral.medium}DD`,
-          borderRadius: 12,
+          borderRadius: 24,
           border: `4px solid ${color}`,
-          minWidth: 500,
+          minWidth: 1000,
         }}
       >
-        <Icon size={60} color={color} />
-        <div style={{ ...fontPresets.heading, fontSize: 40, color: colors.neutral.white }}>
+        <Icon size={120} color={color} />
+        <div style={{ ...fontPresets.heading, fontSize: 80, color: colors.neutral.white }}>
           {title}
         </div>
       </div>
@@ -148,7 +148,7 @@ const FlowLayer = ({
       {showArrow && (
         <div
           style={{
-            fontSize: 70,
+            fontSize: 140,
             color: colors.accent.green,
             opacity: spring({
               frame: frame - delay - 20,
@@ -208,7 +208,7 @@ const Title = ({ text, delay = 0 }: { text: string; delay?: number }) => {
     <div
       style={{
         ...fontPresets.heading,
-        fontSize: 85,
+        fontSize: 170,
         background: createGradient(colors.primary.blue, colors.accent.green),
         WebkitBackgroundClip: 'text',
         WebkitTextFillColor: 'transparent',
@@ -258,7 +258,7 @@ export const Scene5_ArchitectureLayers: React.FC = () => {
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'space-between',
-            padding: '80px 120px',
+            padding: '160px 240px',
           }}
         >
           {/* Header */}
@@ -267,7 +267,7 @@ export const Scene5_ArchitectureLayers: React.FC = () => {
           </div>
 
           {/* All 4 Layers - evenly distributed */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 65, flex: 1, justifyContent: 'center' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 130, flex: 1, justifyContent: 'center' }}>
             <Layer
               number={1}
               title="Client"
@@ -317,7 +317,7 @@ export const Scene5_ArchitectureLayers: React.FC = () => {
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'space-between',
-            padding: '80px 120px',
+            padding: '160px 240px',
           }}
         >
           {/* Header */}

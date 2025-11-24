@@ -37,22 +37,22 @@ const ConceptBadge = ({
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        gap: 8,
+        gap: 16,
       }}
     >
       <div
         style={{
-          padding: '15px 25px',
+          padding: '30px 50px',
           background: `${color}30`,
           border: `2px solid ${color}`,
-          borderRadius: 10,
+          borderRadius: 20,
           display: 'flex',
           alignItems: 'center',
-          gap: 12,
+          gap: 24,
         }}
       >
-        <div style={{ fontSize: 35 }}>{icon}</div>
-        <div style={{ ...fontPresets.heading, fontSize: 26, color }}>
+        <div style={{ fontSize: 70 }}>{icon}</div>
+        <div style={{ ...fontPresets.heading, fontSize: 52, color }}>
           {label}
         </div>
       </div>
@@ -78,7 +78,7 @@ const ArchitectureStack = ({ delay = 0 }: { delay?: number }) => {
       style={{
         display: 'flex',
         flexDirection: 'column',
-        gap: 25,
+        gap: 50,
         opacity: spring({ frame: frame - delay, fps, config: { damping: 100 } }),
       }}
     >
@@ -88,12 +88,12 @@ const ArchitectureStack = ({ delay = 0 }: { delay?: number }) => {
           style={{
             display: 'flex',
             alignItems: 'center',
-            gap: 20,
-            padding: '18px 30px',
+            gap: 40,
+            padding: '36px 60px',
             background: `${colors.neutral.medium}DD`,
-            borderRadius: 12,
+            borderRadius: 24,
             border: `3px solid ${layer.color}`,
-            minWidth: 700,
+            minWidth: 1400,
             transform: `translateX(${spring({
               frame: frame - delay - i * 15,
               fps,
@@ -103,21 +103,21 @@ const ArchitectureStack = ({ delay = 0 }: { delay?: number }) => {
             })}px)`,
           }}
         >
-          <div style={{ fontSize: 50 }}>{layer.icon}</div>
-          <div style={{ ...fontPresets.heading, fontSize: 32, color: layer.color, minWidth: 180 }}>
+          <div style={{ fontSize: 100 }}>{layer.icon}</div>
+          <div style={{ ...fontPresets.heading, fontSize: 64, color: layer.color, minWidth: 360 }}>
             {layer.label}
           </div>
-          <div style={{ display: 'flex', gap: 12 }}>
+          <div style={{ display: 'flex', gap: 24 }}>
             {layer.items.map((item, j) => (
               <div
                 key={j}
                 style={{
                   ...fontPresets.body,
-                  fontSize: 20,
+                  fontSize: 40,
                   color: colors.neutral.white,
                   background: `${layer.color}30`,
-                  padding: '6px 14px',
-                  borderRadius: 6,
+                  padding: '12px 28px',
+                  borderRadius: 12,
                   border: `2px solid ${layer.color}`,
                 }}
               >
@@ -150,8 +150,8 @@ const ExampleFlow = ({ delay = 0 }: { delay?: number }) => {
       style={{
         display: 'flex',
         flexDirection: 'column',
-        gap: 18,
-        maxWidth: 800,
+        gap: 36,
+        maxWidth: 1600,
       }}
     >
       {steps.map((step, i) => (
@@ -160,10 +160,10 @@ const ExampleFlow = ({ delay = 0 }: { delay?: number }) => {
           style={{
             display: 'flex',
             alignItems: 'center',
-            gap: 20,
-            padding: '16px 25px',
+            gap: 40,
+            padding: '32px 50px',
             background: `${colors.neutral.medium}DD`,
-            borderRadius: 10,
+            borderRadius: 20,
             border: `2px solid ${step.color}`,
             opacity: spring({
               frame: frame - delay - i * 15,
@@ -181,19 +181,19 @@ const ExampleFlow = ({ delay = 0 }: { delay?: number }) => {
         >
           <div
             style={{
-              width: 50,
-              height: 50,
+              width: 100,
+              height: 100,
               background: `${step.color}40`,
               borderRadius: '50%',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              fontSize: 28,
+              fontSize: 56,
             }}
           >
             {step.icon}
           </div>
-          <div style={{ ...fontPresets.body, fontSize: 26, color: colors.neutral.white }}>
+          <div style={{ ...fontPresets.body, fontSize: 52, color: colors.neutral.white }}>
             {step.text}
           </div>
         </div>
@@ -210,7 +210,7 @@ const Title = ({ text, delay = 0 }: { text: string; delay?: number }) => {
     <div
       style={{
         ...fontPresets.heading,
-        fontSize: 70,
+        fontSize: 140,
         background: createGradient(colors.primary.blue, colors.primary.purple),
         WebkitBackgroundClip: 'text',
         WebkitTextFillColor: 'transparent',
@@ -240,13 +240,13 @@ export const Scene9_PuttingItTogether: React.FC = () => {
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'center',
-            padding: '80px 60px',
+            padding: '160px 120px',
           }}
         >
           <Title text="What We Covered" delay={0} />
 
           {/* Concept badges in a grid */}
-          <div style={{ position: 'relative', width: 1000, height: 600, marginTop: 40 }}>
+          <div style={{ position: 'relative', width: 1000, height: 1200, marginTop: 40 }}>
             <ConceptBadge label="CAP Theorem" icon="△" color={colors.primary.blue} delay={30} position={{ x: 100, y: 50 }} />
             <ConceptBadge label="Scaling" icon="📈" color={colors.accent.green} delay={50} position={{ x: 520, y: 50 }} />
             <ConceptBadge label="Architecture" icon="🏗️" color={colors.primary.purple} delay={70} position={{ x: 100, y: 180 }} />
@@ -264,8 +264,8 @@ export const Scene9_PuttingItTogether: React.FC = () => {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            padding: '80px 60px',
-            gap: 40,
+            padding: '160px 120px',
+            gap: 80,
           }}
         >
           <Title text="Instagram-like App" delay={0} />
@@ -281,7 +281,7 @@ export const Scene9_PuttingItTogether: React.FC = () => {
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'space-between',
-            padding: '100px 120px',
+            padding: '200px 240px',
           }}
         >
           <Title text="Photo Upload Flow" delay={0} />
@@ -289,7 +289,7 @@ export const Scene9_PuttingItTogether: React.FC = () => {
           <div
             style={{
               ...fontPresets.body,
-              fontSize: 30,
+              fontSize: 60,
               color: colors.neutral.white,
               textAlign: 'center',
               maxWidth: 1000,

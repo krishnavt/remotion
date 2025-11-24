@@ -28,8 +28,8 @@ const AnimatedLogo = ({ delay = 0 }: { delay?: number }) => {
     <div
       style={{
         position: 'relative',
-        width: 200,
-        height: 200,
+        width: 400,
+        height: 400,
         transform: `scale(${scale})`,
       }}
     >
@@ -106,7 +106,7 @@ const BrandName = ({ delay = 0 }: { delay?: number }) => {
     <div
       style={{
         ...fontPresets.heading,
-        fontSize: 85,
+        fontSize: 170,
         background: createGradient(colors.primary.blue, colors.accent.green),
         WebkitBackgroundClip: 'text',
         WebkitTextFillColor: 'transparent',
@@ -138,7 +138,7 @@ const Tagline = ({ delay = 0 }: { delay?: number }) => {
     <div
       style={{
         ...fontPresets.body,
-        fontSize: 32,
+        fontSize: 64,
         color: colors.neutral.white,
         opacity: opacity * 0.9,
         letterSpacing: '1px',
@@ -234,7 +234,7 @@ export const BrandIntro: React.FC = () => {
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
-          gap: 40,
+          gap: 80,
         }}
       >
         <AnimatedLogo delay={10} />
