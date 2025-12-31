@@ -1,0 +1,15 @@
+export const COLORS = {
+  bg: '#050816',
+  text: '#f5f5f5',
+  heapBorder: '#4b5563',
+  eden: '#22c55e',
+  survivor: '#facc15',
+  old: '#3b82f6',
+  liveObj: '#22c55e',
+  deadObj: '#6b7280',
+  markedObj: '#f97316',
+  root: '#e11d48',
+  g1gc: '#10b981',
+  metaspace: '#8b5cf6',
+  accent: '#f59e0b',
+};
